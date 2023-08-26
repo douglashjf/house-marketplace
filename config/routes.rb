@@ -4,5 +4,8 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  resources :houses
+  resources :houses do
+    resources :offers, only: %i[index create]
+  end
+  resources :offers, only: [:destroy]
 end

@@ -12,6 +12,18 @@
 
   <hr>
 
+  <h2>Offers</h2>
+
+  <% @house.offers.each do |offer| %>
+    <%= offer.price %>
+  <% end %>
+
+  <h1>Submit an offer</h1>
+  <%= simple_form_for [@house, Offer.new] do |f| %>
+    <%= f.input :price %>
+    <%= f.submit "Submit offer", class: "btn btn-primary" %>
+  <% end %>
+
   <%= link_to '< All houses', houses_path %> | <%= link_to 'edit', edit_house_path(@house) %>
   <%= link_to 'delete', house_path(@house), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
 
