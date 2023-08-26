@@ -9,6 +9,7 @@ class OffersController < ApplicationController
 
   def create
     @house = House.find(params[:house_id])
+    authorize @house
     @offer = Offer.new(offer_params)
     @offer.house = @house
     @offer.user = current_user
