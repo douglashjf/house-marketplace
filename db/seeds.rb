@@ -12,6 +12,7 @@ House.destroy_all
 puts "Creating new data"
 
 houses = House.create!([{
+  user_id: 1,
   address: "serangoon ave 1",
   price: 600000,
   bedroom: 2,
