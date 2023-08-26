@@ -4,7 +4,7 @@ class HousesController < ApplicationController
   # GET / houses
 
   def index
-    @houses = House.all
+    @houses = policy_scope(House)
   end
 
   # GET / houses/:id
@@ -14,6 +14,7 @@ class HousesController < ApplicationController
   # GET / houses/new
   def new
     @house = House.new
+    authorize(@house)
   end
 
   def edit
@@ -22,6 +23,7 @@ class HousesController < ApplicationController
   def create
     @house = House.new(house_params)
     @house.user = current_user
+    authorize(@house)
     if @house.save
       redirect_to houses_path(@house)
     else
@@ -52,6 +54,7 @@ class HousesController < ApplicationController
 
   def set_house
     @house = House.find(params[:id])
+    authorize(@house)
   end
 
   def house_params

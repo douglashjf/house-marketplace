@@ -12,7 +12,7 @@
 
   <hr>
 
-  <%= link_to '< All houses', houses_path %> | <%= link_to 'edit', edit_house_path(@house) %>
-  <%= link_to 'delete', house_path(@house), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  <%= link_to '< All houses', houses_path %> | <%= link_to 'edit', edit_house_path(@house) if policy(@house).edit? %>
+  <%= link_to 'delete', house_path(@house), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if policy(@house).destroy? %>
 
 </div>
