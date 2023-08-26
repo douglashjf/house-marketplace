@@ -1,0 +1,11 @@
+<%= simple_form_for(@house) do |f| %>
+    <%= f.input :address, placeholder: "Address" %>
+    <%= f.input :price, placeholder: "Price" %>
+    <%= f.input :bedroom, placeholder: "bedroom" %>
+    <%= f.input :bathroom, placeholder: "bathroom" %>
+    <%= f.input :square_feet, placeholder: "square feet?" %>
+    <%= f.input :description, placeholder: "describe this place" %>
+    <%= f.input :property_type, placeholder: "property type" %>
+    <%= f.input :tenure, placeholder: "how many years tenure" %>
+    <%= f.button :submit, class: "btn btn-success" %>
+  <% end %>

@@ -1,0 +1,5 @@
+<% @houses.each do |house| %>
+  <div class="listing">
+    <p><%= link_to house.address, house_path(house) %></p>
+  </div>
+<% end %>
