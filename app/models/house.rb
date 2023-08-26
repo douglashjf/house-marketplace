@@ -7,6 +7,6 @@ class House < ApplicationRecord
   belongs_to :user
   validates :address, :price, :bedroom, :bathroom, :square_feet, :description, :property_type, :tenure, presence: true
   validates :bedroom, :bathroom, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 5 }
-
+  validates :price, :square_feet, numericality: { only_integer: true, greater_than: 0 }
   has_many :offers
 end
