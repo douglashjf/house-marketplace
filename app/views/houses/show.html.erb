@@ -1,0 +1,18 @@
+<div class="container">
+  <h1> <%= @house.address %> </h1>
+
+  <p>INSERT PHOTO HERE</p>
+  <p> <%= @house.price %> </p>
+  <p> <%= @house.bedroom %> </p>
+  <p> <%= @house.bathroom %> </p>
+  <p> <%= @house.square_feet %> </p>
+  <p> <%= @house.description %> </p>
+  <p> <%= @house.property_type %> </p>
+  <p> <%= @house.tenure %> </p>
+
+  <hr>
+
+  <%= link_to '< All houses', houses_path %> | <%= link_to 'edit', edit_house_path(@house) %>
+  <%= link_to 'delete', house_path(@house), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+
+</div>
