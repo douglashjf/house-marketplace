@@ -1,11 +1,11 @@
 <%= simple_form_for(@house) do |f| %>
     <%= f.input :address, placeholder: "Address" %>
     <%= f.input :price, placeholder: "Price" %>
-    <%= f.input :bedroom, placeholder: "bedroom" %>
-    <%= f.input :bathroom, placeholder: "bathroom" %>
+    <%= f.input :bedroom, placeholder: "bedroom" , collection: House::BEDROOM %>
+    <%= f.input :bathroom, placeholder: "bathroom" , collection: House::BATHROOM %>
     <%= f.input :square_feet, placeholder: "square feet?" %>
     <%= f.input :description, placeholder: "describe this place" %>
-    <%= f.input :property_type, placeholder: "property type" %>
-    <%= f.input :tenure, placeholder: "how many years tenure" %>
+    <%= f.input :property_type, placeholder: "property type", collection: House::PROPERTY_TYPE %>
+    <%= f.input :tenure, placeholder: "how many years tenure", collection: House::TENURE_CAT  %>
     <%= f.button :submit, class: "btn btn-success" %>
   <% end %>

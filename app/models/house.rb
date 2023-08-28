@@ -1,5 +1,5 @@
 class House < ApplicationRecord
-  TENURE_CAT = ["99-year", "999-year", "freehold"]
+  TENURE_CAT = ["99-Years", "999-Years", "Freehold"]
   BEDROOM = [1, 2, 3, 4, 5]
   BATHROOM = [1, 2, 3, 4, 5]
   PROPERTY_TYPE = ["HDB", "Condo", "Landed"]

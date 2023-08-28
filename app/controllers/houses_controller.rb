@@ -25,7 +25,7 @@ class HousesController < ApplicationController
     @house.user = current_user
     authorize(@house)
     if @house.save
-      redirect_to houses_path(@house)
+      redirect_to house_path(@house)
     else
       render :new, status: :unprocessable_entity
     end
