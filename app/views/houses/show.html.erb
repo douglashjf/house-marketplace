@@ -2,22 +2,39 @@
   <h1> <%= @house.address %> </h1>
 
   <p>INSERT PHOTO HERE</p>
-  <p> <%= @house.price %> </p>
-  <p> <%= @house.bedroom %> </p>
-  <p> <%= @house.bathroom %> </p>
-  <p> <%= @house.square_feet %> </p>
-  <p> <%= @house.description %> </p>
-  <p> <%= @house.property_type %> </p>
-  <p> <%= @house.tenure %> </p>
+  <p> Price: $<%= @house.price %> </p>
+  <p> Bedrooms: <%= @house.bedroom %> </p>
+  <p> Bathrooms: <%= @house.bathroom %> </p>
+  <p> Square Feet: <%= @house.square_feet %>sqft </p>
+  <p> Description: <%= @house.description %> </p>
+  <p> Type: <%= @house.property_type %> </p>
+  <p> Tenure: <%= @house.tenure %> </p>
 
   <hr>
 
 
-  <h2>Offers</h2>
+  <h2>Current Offers</h2>
 
-  <% @house.offers.each do |offer| %>
-    <%= offer.price %>
-  <% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Price</th>
+      <th>Status</th>
+      <th>Date Created</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @house.offers.each_with_index do |offer, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= offer.price %></td>
+        <td><%= offer.status %></td>
+        <td><%= offer.created_at.strftime('%Y-%m-%d') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
   <h1>Submit an offer</h1>
   <%= simple_form_for [@house, Offer.new] do |f| %>

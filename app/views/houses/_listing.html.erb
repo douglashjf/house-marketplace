@@ -1,5 +1,16 @@
-<% @houses.each do |house| %>
-  <div class="listing">
-    <p><%= link_to house.address, house_path(house) %></p>
-  </div>
-<% end %>
+<div class="row">
+  <% @houses.each do |house| %>
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <!-- Can replace the following image tag with your actual image using image_tag -->
+        <img class="card-img-top" src="..." alt="House Image">
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to house.address, house_path(house) %></h5>
+          <p class="card-text">Price: $<%= house.price %></p>
+          <!-- You can customize the card content and add more information here -->
+          <%= link_to "Click for more info", house_path(house), class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
