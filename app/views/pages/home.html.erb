@@ -1,2 +1,13 @@
-<h1>Pages#home</h1>
-<%= link_to '< All houses', houses_path %>
+<div class="banner mb-5" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= asset_path("cover-photo.webp") %>');">
+<div class="container">
+  <%= render 'search' %>
+  </div>
+</div>
+
+<div class="container d-flex justify-content-center">
+  <h2>Featured Project</h2>
+</div>
+
+<div class="container mt-5 mb-5">
+  <%= render 'featured' %>
+</div>

@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon
 ">
-  <%= link_to houses_path, class: "navbar-brand" do %>
+  <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "99.png" %>
   <% end %>
 
@@ -19,7 +19,7 @@
             <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Profile", "#", class: "dropdown-item" %>
-              <%= link_to "My Listings", "#", class: "dropdown-item" %>
+              <%= link_to "My Listings", my_listings_houses_path, class: "dropdown-item" %>
               <%= link_to "My Offers", "#", class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
             </div>
