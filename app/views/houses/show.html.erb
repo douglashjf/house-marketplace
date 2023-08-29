@@ -47,3 +47,9 @@
 
 
 </div>
+
+<% if current_user && @house.favourited_by?(current_user) %>
+  <%= link_to 'Remove from Favourites', toggle_favourites_house_path(@house), method: :post, remote: true %>
+<% else %>
+  <%= link_to 'Add to Favourites', toggle_favourites_house_path(@house), method: :post, remote: true %>
+<% end %>

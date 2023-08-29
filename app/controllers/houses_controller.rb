@@ -50,6 +50,17 @@ class HousesController < ApplicationController
   #   @houses = House.where(category: @category[0...-1])
   # end
 
+  def toggle_favourites
+    @house = House.find(params[:id])
+    if current_user.favourites.exists?(@house.id)
+      current_user.favourites.delete(@house)
+    else
+      current_user.favourites << @house
+    end
+    redirect_to @house
+  end
+
+
   private
 
   def set_house
