@@ -2,7 +2,7 @@
   <h1> <%= @house.address %> </h1>
 
   <p>INSERT PHOTO HERE</p>
-  <p> Price: $<%= @house.price %> </p>
+  <p> Min Price: $<%= @house.price %> </p>
   <p> Bedrooms: <%= @house.bedroom %> </p>
   <p> Bathrooms: <%= @house.bathroom %> </p>
   <p> Square Feet: <%= @house.square_feet %>sqft </p>
@@ -37,11 +37,14 @@
 </table>
 
   <h1>Submit an offer</h1>
+  <% if current_user != @house.user %>
   <%= simple_form_for [@house, Offer.new] do |f| %>
     <%= f.input :price %>
     <%= f.submit "Submit offer", class: "btn btn-primary" %>
   <% end %>
-
+<% else %>
+  <p>You are the seller of this house, so you cannot submit an offer.</p>
+<% end %>
   <%= link_to '< All houses', houses_path %> | <%= link_to 'edit', edit_house_path(@house) if policy(@house).edit? %>
   <%= link_to 'delete', house_path(@house), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if policy(@house).destroy? %>
 

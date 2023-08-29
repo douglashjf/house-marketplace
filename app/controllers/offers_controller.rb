@@ -16,7 +16,8 @@ class OffersController < ApplicationController
     if @offer.save
       redirect_to house_path(@house)
     else
-      render :new, status: :unprocessable_entity
+      flash.now[:alert] = "Offer is below the minimum price, please offer higher."
+      render 'houses/show', locals: { house: @house, offer: @offer }, status: :unprocessable_entity
     end
   end
 
