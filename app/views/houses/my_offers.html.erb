@@ -1,21 +1,16 @@
 <div class="container mt-5">
   <div>
-    <%= link_to houses_path, class: "btn" do %>
+    <%= link_to root_path, class: "btn" do %>
         <i class="fas fa-arrow-left"></i>
       <% end %>
   </div>
   <div class="text-center">
-    <h1>My Listings</h1>
-    <% if @user_houses.present? %>
-      <div>
-        <%= link_to "Create a new listing", new_house_path, class: "btn btn-primary" %>
-      </div>
-    <% end %>
+    <h1>My Offers</h1>
   </div>
 
   <div class="row justify-content-center mt-5">
-    <% if @user_houses.present? %>
-      <% @user_houses.each do |house| %>
+    <% if @user_offers.present? %>
+      <% @user_offers.each do |house| %>
         <div class="col-md-3 mb-4">
           <div class="card" style="width: 18rem;">
             <% if house.photo.attached? %>
@@ -23,7 +18,8 @@
             <% end %>
             <div class="card-body">
               <h5 class="card-title"><%= link_to house.address, house_path(house) %></h5>
-              <p class="card-text">Price: $<%= house.price %></p>
+              <p class="card-text">Current Price: $<%= house.price %></p>
+              <p class="card-text">Offered Price: $<%= house.offers.find_by(user: current_user).price %></p>
               <%= link_to "Click for more info", house_path(house), class: "btn btn-primary" %>
             </div>
           </div>
@@ -33,10 +29,10 @@
       <div class="col-md-12 text-center">
         <div>
           <%= image_tag 'empty.webp', alt: "No Houses" %>
-          <h3>There are no listings yet.</h3>
+          <h3>There are no Offers yet.</h3>
         </div>
         <div>
-          <%= link_to "Create a new listing", new_house_path, class: "btn btn-primary" %>
+          <%= link_to "View All Houses", houses_path, class: "btn btn-primary" %>
         </div>
       </div>
     <% end %>

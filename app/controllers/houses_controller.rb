@@ -1,6 +1,6 @@
 class HousesController < ApplicationController
   before_action :set_house, only: %i[show edit update destroy]
-  skip_after_action :verify_authorized, only: :my_listings
+  skip_after_action :verify_authorized, only: %i[my_listings my_offers]
 
 
   # GET / houses
@@ -54,6 +54,12 @@ class HousesController < ApplicationController
 
   def my_listings
     @user_houses = current_user.houses
+  end
+
+  def my_offers
+    @user_offers = current_user.offers.map do |offer|
+      offer.house
+    end
   end
 
   private
