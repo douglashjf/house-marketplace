@@ -1,0 +1,17 @@
+.search-input-group {
+  border: 20px solid grey;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.search-input {
+  border: none;
+  border-radius: 8px 0 0 8px;
+  padding: 0.375rem 0.75rem;
+}
+
+.search-button {
+  border: none;
+  border-radius: 0 8px 8px 0;
+}
