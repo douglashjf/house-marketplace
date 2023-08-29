@@ -1,7 +1,12 @@
 <div class="container">
+
+  <%= link_to '< All houses', houses_path %> | <%= link_to 'edit', edit_house_path(@house) if policy(@house).edit? %>
+  <hr>
   <h1> <%= @house.address %> </h1>
 
-  <p>INSERT PHOTO HERE</p>
+  <% if @house.photo.attached? %>
+    <%= image_tag(cl_image_path @house.photo.key, width: 800, height: 600, crop: :fill) %>
+  <% end %>
   <p> Price: $<%= @house.price %> </p>
   <p> Bedrooms: <%= @house.bedroom %> </p>
   <p> Bathrooms: <%= @house.bathroom %> </p>
