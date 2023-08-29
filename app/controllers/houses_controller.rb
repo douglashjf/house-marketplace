@@ -1,5 +1,7 @@
 class HousesController < ApplicationController
   before_action :set_house, only: %i[show edit update destroy]
+  skip_after_action :verify_authorized, only: :my_listings
+
 
   # GET / houses
 
@@ -49,6 +51,10 @@ class HousesController < ApplicationController
   #   @category = params[:category]
   #   @houses = House.where(category: @category[0...-1])
   # end
+
+  def my_listings
+    @user_houses = current_user.houses
+  end
 
   private
 

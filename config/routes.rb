@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   resources :houses do
     resources :offers, only: %i[index create]
+    collection do
+      get 'my_listings'
+    end
   end
   resources :offers, only: [:destroy]
 end
