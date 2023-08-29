@@ -1,5 +1,5 @@
 class HousesController < ApplicationController
-  before_action :set_house, only: %i[show edit update destroy]
+  before_action :set_house, only: %i[show edit update destroy toggle_favourites]
 
   # GET / houses
 
@@ -51,11 +51,10 @@ class HousesController < ApplicationController
   # end
 
   def toggle_favourites
-    @house = House.find(params[:id])
-    if current_user.favourites.exists?(@house.id)
-      current_user.favourites.delete(@house)
+    if current_user.favourites.exists?(house_id: @house.id)
+      current_user.favourites.where(house_id: @house.id).destroy_all
     else
-      current_user.favourites << @house
+      Favourite.create(user: current_user, house_id: @house.id)
     end
     redirect_to @house
   end

@@ -22,4 +22,7 @@ class HousePolicy < ApplicationPolicy
     record.user == user
   end
 
+  def toggle_favourites?
+    true
+  end
 end

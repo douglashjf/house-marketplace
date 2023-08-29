@@ -5,7 +5,7 @@ class House < ApplicationRecord
   PROPERTY_TYPE = ["HDB", "Condo", "Landed"]
 
   def favourited_by?(user)
-    user.favourites.exists?(id: id)
+    user.favourites.exists?(id)
   end
 
   belongs_to :user
