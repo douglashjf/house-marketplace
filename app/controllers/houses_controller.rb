@@ -1,6 +1,5 @@
 class HousesController < ApplicationController
   before_action :set_house, only: %i[show edit update destroy]
-  skip_after_action :verify_authorized, only: %i[my_listings my_offers]
 
 
   # GET / houses
