@@ -1,11 +1,27 @@
+<div class="container position-relative">
+  <div class="position-absolute top-0 end-0">
+  <% if current_user && @house.favourited_by?(current_user) %>
+    <%= button_to 'Remove from Favourites', toggle_favourites_house_path(@house), method: :post, remote: true %>
+  <% else %>
+    <%= button_to 'Add to Favourites', toggle_favourites_house_path(@house), method: :post, remote: true %>
+  <% end %>
+</div>
+
 <div class="container">
+
+  <%= link_to '< All houses', houses_path %> | <%= link_to 'edit', edit_house_path(@house) if policy(@house).edit? %>
+  <hr>
+
   <h1> <%= @house.address %> </h1>
 
-  <p>INSERT PHOTO HERE</p>
+  <% if @house.photo.attached? %>
+    <%= image_tag(cl_image_path @house.photo.key, width: 800, height: 600, crop: :fill) %>
+  <% end %>
   <p> Price: $<%= @house.price %> </p>
   <p> Bedrooms: <%= @house.bedroom %> </p>
   <p> Bathrooms: <%= @house.bathroom %> </p>
   <p> Square Feet: <%= @house.square_feet %>sqft </p>
+  <p> Price per sqft: $<%= (@house.price.to_f / @house.square_feet).round(2) %></p>
   <p> Description: <%= @house.description %> </p>
   <p> Type: <%= @house.property_type %> </p>
   <p> Tenure: <%= @house.tenure %> </p>
