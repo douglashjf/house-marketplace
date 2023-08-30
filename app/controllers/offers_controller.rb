@@ -3,7 +3,6 @@ class OffersController < ApplicationController
   before_action :set_house, only: %i[new create]
 
   def new
-    @house = House.find(params[:house_id])
     @offer = Offer.new
   end
 
@@ -13,10 +12,11 @@ class OffersController < ApplicationController
     @offer = Offer.new(offer_params)
     @offer.house = @house
     @offer.user = current_user
+
     if @offer.save
       redirect_to house_path(@house)
     else
-      render :new, status: :unprocessable_entity
+      render "houses/show", status: :unprocessable_entity
     end
   end
 
