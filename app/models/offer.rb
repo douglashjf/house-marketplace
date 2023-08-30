@@ -5,7 +5,7 @@ class Offer < ApplicationRecord
   belongs_to :user
   belongs_to :house
   validates :price, numericality: { only_integer: true, greater_than: 0 }, presence: true
-  validate :offer_price_greater_than_house_price, on: :create
+  validate :offer_price_greater_than_house_price
 
   private
   def set_defaults
@@ -14,7 +14,7 @@ class Offer < ApplicationRecord
 
   def offer_price_greater_than_house_price
     if price.present? && price <= house.price
-      errors.add(:price, "must be greater than the Min price")
+      errors.add(:price, "must be greater than the Minimum Ask Price")
     end
   end
 end

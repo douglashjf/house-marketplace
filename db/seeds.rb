@@ -192,10 +192,10 @@ puts "Created house 6"
 j = 1
 10.times do
   Offer.create!(
-  user_id: User.all.sample.id,
-  house_id: House.all.sample.id,
-  price: rand(700000..5000000),
-  status: ["pending", "accepted", "declined"].sample
+    user_id: User.all.sample.id,
+    house_id: House.all.sample.id,
+    price: 10000000,
+    status: ["pending", "accepted", "declined"].sample
   )
   puts "Created offer #{j}"
   j += 1
