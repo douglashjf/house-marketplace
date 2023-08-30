@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
+require "open-uri"
 
 puts "Clearing old data"
 
@@ -31,7 +32,7 @@ end
 
 House.create!(
   user_id: User.first.id,
-  address: "serangoon ave 1",
+  address: "Serangoon Ave 1",
   price: 600000,
   bedroom: 2,
   bathroom: 2,
@@ -40,11 +41,16 @@ House.create!(
   property_type: "HDB",
   tenure: "99-year"
 )
+# Import seed house images (first 6 only)
+house = House.last
+file = URI.open("https://auctionjiacontent.s3.amazonaws.com/osproperty/properties/193/medium/1931598585858401-Serangoon-Ave-1-Living-Room.jpg")
+house.photo.attach(io: file, filename: "house1.png", content_type: "image/png")
+house.save
 puts "Created house 1"
 
 House.create!(
   user_id: User.first.id,
-  address: "bishan ave 1",
+  address: "Bishan Ave 1",
   price: 702100,
   bedroom: 4,
   bathroom: 1,
@@ -53,11 +59,16 @@ House.create!(
   property_type: "Condo",
   tenure: "999-year"
 )
+# Import seed house images (first 6 only)
+house = House.last
+file = URI.open("https://s3-ap-southeast-1.amazonaws.com/static.streetsine/Listing%20Photos/Circle/97462521/L/374066951_mobile.jpg?20220908222907")
+house.photo.attach(io: file, filename: "house2.png", content_type: "image/png")
+house.save
 puts "Created house 2"
 
 House.create!(
   user_id: User.second.id,
-  address: "ang mo kio ave 1",
+  address: "Ang Mo Kio Avenue 1",
   price: 800000,
   bedroom: 3,
   bathroom: 3,
@@ -66,11 +77,16 @@ House.create!(
   property_type: "Condo",
   tenure: "99-year"
 )
+# Import seed house images (first 6 only)
+house = House.last
+file = URI.open("https://alanweeproperty.com/wp-content/uploads/2022/08/301-Ang-Mo-Kio-Ave-3-Jumbo-Flat-Living-Room.jpg")
+house.photo.attach(io: file, filename: "house3.png", content_type: "image/png")
+house.save
 puts "Created house 3"
 
 House.create!(
   user_id: User.third.id,
-  address: "orchard rd",
+  address: "Orchard Road",
   price: 4000000,
   bedroom: 5,
   bathroom: 5,
@@ -79,12 +95,17 @@ House.create!(
   property_type: "Landed",
   tenure: "freehold"
 )
+# Import seed house cover images (first 6 only)
+house = House.last
+file = URI.open("https://sg1-cdn.pgimgs.com/listing/24493503/UPHO.143170962.V550/Cairnhill-Residences-Orchard-River-Valley-Singapore.jpg")
+house.photo.attach(io: file, filename: "house4.png", content_type: "image/png")
+house.save
 puts "Created house 4"
 
 House.create!(
   user_id: User.fourth.id,
-  address: "raffles place",
-  price: 900000,
+  address: "Raffles Place",
+  price: 5000000,
   bedroom: 4,
   bathroom: 3,
   square_feet: 1100,
@@ -92,19 +113,29 @@ House.create!(
   property_type: "Condo",
   tenure: "999-year"
 )
+# Import seed house images (first 6 only)
+house = House.last
+file = URI.open("https://www.discoverasr.com/content/dam/tal/media/images/properties/singapore/singapore/citadines-raffles-place-singapore/overview/citadines-raffles-place-singapore-living-rm-750x600.jpg.transform/ascott-lowres/image.jpg")
+house.photo.attach(io: file, filename: "house5.png", content_type: "image/png")
+house.save
 puts "Created house 5"
 
 House.create!(
   user_id: User.fourth.id,
-  address: "tanjong pagar",
-  price: 650000,
+  address: "Tanjong Pagar",
+  price: 6000000,
   bedroom: 2,
   bathroom: 2,
   square_feet: 700,
-  description: "Close to CBD",
+  description: "Close to CBD, very airy!",
   property_type: "HDB",
   tenure: "99-year"
 )
+# Import seed house images (first 6 only)
+house = House.last
+file = URI.open("https://www.retalkasia.com/sites/default/files/styles/article-full/public/imagereader_5_24.jpg?itok=6Af7E8CN")
+house.photo.attach(io: file, filename: "house6.png", content_type: "image/png")
+house.save
 puts "Created house 6"
 
 # House.create!(

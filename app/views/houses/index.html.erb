@@ -1,8 +1,14 @@
 <div class="container">
   <h1>All Houses</h1>
 
-  <%= render 'listing' %>
+  <div class="container mb-3">
+    <%= render 'pages/search' %>
+  </div>
 
   <hr>
-  <%= link_to 'Create new listing', new_house_path, class: "btn btn-primary"%>
+  <%= link_to 'Looking to sell? Create new listing', new_house_path, class: "btn btn-success"%>
+  <hr>
+
+  <%= render 'listing' %>
+
 </div>
