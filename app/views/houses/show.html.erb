@@ -11,7 +11,7 @@
   <p> Bedrooms: <%= @house.bedroom %> </p>
   <p> Bathrooms: <%= @house.bathroom %> </p>
   <p> Square Feet: <%= @house.square_feet %>sqft </p>
-  <p> Price per sqft: $<%= (house.price.to_f / house.square_feet).round(2) %></p>
+  <p> Price per sqft: $<%= (@house.price.to_f / @house.square_feet).round(2) %></p>
   <p> Description: <%= @house.description %> </p>
   <p> Type: <%= @house.property_type %> </p>
   <p> Tenure: <%= @house.tenure %> </p>
