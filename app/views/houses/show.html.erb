@@ -37,8 +37,8 @@
 </table>
 
   <h1>Submit an offer</h1>
-  <%= simple_form_for [@house, Offer.new] do |f| %>
-    <%= f.input :price %>
+  <%= simple_form_for [@house, @offer] do |f| %>
+    <%= f.input :price, error: @offer.errors[:price] %>,
     <%= f.submit "Submit offer", class: "btn btn-primary" %>
   <% end %>
 

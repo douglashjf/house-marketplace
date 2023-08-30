@@ -10,6 +10,7 @@ class HousesController < ApplicationController
 
   # GET / houses/:id
   def show
+    @offer = Offer.new
   end
 
   # GET / houses/new
