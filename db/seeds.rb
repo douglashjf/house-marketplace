@@ -13,10 +13,9 @@ puts "Clearing old data"
 House.destroy_all
 Offer.destroy_all
 User.destroy_all
+Favourite.destroy_all
 
 puts "Creating new data"
-
-
 
 i = 1
 10.times do
@@ -201,5 +200,10 @@ j = 1
   puts "Created offer #{j}"
   j += 1
 end
+
+Favourite.create!(
+  user_id: User.last.id,
+  house_id: House.last.id
+)
 
 puts "Data completed"

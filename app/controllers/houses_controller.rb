@@ -1,5 +1,5 @@
 class HousesController < ApplicationController
-  before_action :set_house, only: %i[show edit update destroy]
+  before_action :set_house, only: %i[show edit update destroy toggle_favourites]
 
 
   # GET / houses
@@ -50,6 +50,15 @@ class HousesController < ApplicationController
   #   @category = params[:category]
   #   @houses = House.where(category: @category[0...-1])
   # end
+
+  def toggle_favourites
+    if current_user.favourites.exists?(house_id: @house.id)
+      current_user.favourites.where(house_id: @house.id).destroy_all
+    else
+      Favourite.create(user: current_user, house_id: @house.id)
+    end
+    redirect_to @house
+  end
 
   def my_listings
     @user_houses = current_user.houses

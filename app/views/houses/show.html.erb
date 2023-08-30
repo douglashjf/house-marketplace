@@ -1,7 +1,17 @@
+<div class="container position-relative">
+  <div class="position-absolute top-0 end-0">
+  <% if current_user && @house.favourited_by?(current_user) %>
+    <%= button_to 'Remove from Favourites', toggle_favourites_house_path(@house), method: :post, remote: true %>
+  <% else %>
+    <%= button_to 'Add to Favourites', toggle_favourites_house_path(@house), method: :post, remote: true %>
+  <% end %>
+</div>
+
 <div class="container">
 
   <%= link_to '< All houses', houses_path %> | <%= link_to 'edit', edit_house_path(@house) if policy(@house).edit? %>
   <hr>
+
   <h1> <%= @house.address %> </h1>
 
   <% if @house.photo.attached? %>

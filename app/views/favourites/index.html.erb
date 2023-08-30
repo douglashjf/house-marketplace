@@ -1,0 +1,39 @@
+<div class="container mt-5">
+  <div>
+    <%= link_to houses_path, class: "btn" do %>
+        <i class="fas fa-arrow-left"></i>
+      <% end %>
+  </div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3 text-center">
+      <h1>My Favourites!</h1>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-5">
+    <% if @favourites.present? %>
+      <% @favourites.each do |house| %>
+        <div class="col-md-3 mb-4">
+          <div class="card" style="width: 18rem;">
+            <% if House.find(house.house_id).photo.attached? %>
+              <%= image_tag(cl_image_path House.find(house.house_id).photo.key, width: 400, height: 300, crop: :fill) %>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= House.find(house.house_id).address %></h5>
+              <p class="card-text">Minimum Ask Price: $<%= House.find(house.house_id).price %></p>
+              <%= link_to "Check this out!", house_path(House.find(house.house_id)), class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="col-md-12 text-center">
+        <div>
+          <%#= image_tag 'empty.webp', alt: "No Houses" %>
+          <h3>There are no favourites yet.</h3>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
