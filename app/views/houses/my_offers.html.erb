@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  <div>
+    <%= link_to houses_path, class: "btn" do %>
+        <i class="fas fa-arrow-left"></i>
+      <% end %>
+  </div>
+  <div class="text-center">
+    <h1>My Offers</h1>
+  </div>
+
+  <div class="row justify-content-center mt-5">
+    <% if @user_offers.present? %>
+      <% @user_offers.each do |house| %>
+        <div class="col-md-3 mb-4">
+          <div class="card" style="width: 18rem;">
+            <% if house.photo.attached? %>
+              <%= image_tag(cl_image_path house.photo.key, width: 400, height: 300, crop: :fill) %>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= house.address %></h5>
+              <p class="card-text">Minimum Ask Price: $<%= house.price %></p>
+              <p class="card-text">Your Offered Price: $<%= house.offers.find_by(user: current_user).price %></p>
+              <p class="card-text">Highest Offer Price: $<%= house.offers.maximum(:price)%></p>
+              <p class="card-text">Date Created: <%= house.offers.find_by(user: current_user).created_at.strftime('%Y-%m-%d') %></p>
+              <%= link_to "Check this out!", house_path(house), class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="col-md-12 text-center">
+        <div>
+          <%= image_tag 'empty.webp', alt: "No Houses" %>
+          <h3>There are no Offers yet.</h3>
+        </div>
+        <div>
+          <%= link_to "View All Houses", houses_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

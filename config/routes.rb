@@ -9,6 +9,10 @@ Rails.application.routes.draw do
       post :toggle_favourites
     end
     resources :offers, only: %i[index create]
+    collection do
+      get 'my_listings'
+      get 'my_offers'
+    end
   end
   resources :offers, only: [:destroy]
   resources :favourites, only: :index

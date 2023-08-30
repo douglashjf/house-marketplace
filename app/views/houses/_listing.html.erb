@@ -1,16 +1,25 @@
 <div class="row">
   <% @houses.each do |house| %>
-    <div class="col-md-4">
-      <div class="card" style="width: 18rem;">
+    <div class="col-md-6 mb-3">
+      <div class="card" style="width: 100%;">
         <!-- Can replace the following image tag with your actual image using image_tag -->
         <% if house.photo.attached? %>
           <%= image_tag(cl_image_path house.photo.key, width: 400, height: 300, crop: :fill) %>
         <% end %>
         <div class="card-body">
           <h5 class="card-title"><%= link_to house.address, house_path(house) %></h5>
-          <p class="card-text">Price: $<%= house.price %></p>
-          <!-- You can customize the card content and add more information here -->
-          <%= link_to "Click for more info", house_path(house), class: "btn btn-primary" %>
+          <p class="card-text"><strong>Minimum Ask Price:</strong> $<%= house.price %></p>
+          <div class="d-flex justify-content-between">
+            <p class="card-text">size in sqft: <%= house.square_feet %></p>
+            <%# calculate the price per square feet within ERB %>
+            <p class="card-text">price per sqft: $<%= (house.price.to_f / house.square_feet).round(2) %></p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p class="card-text">bathrooms: <%= house.bathroom %></p>
+            <p class="card-text">bedrooms: <%= house.bedroom %></p>
+          </div>
+
+          <%= link_to "Check this out!", house_path(house), class: "btn btn-primary" %>
         </div>
       </div>
     </div>

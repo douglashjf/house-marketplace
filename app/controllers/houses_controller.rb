@@ -1,6 +1,7 @@
 class HousesController < ApplicationController
   before_action :set_house, only: %i[show edit update destroy toggle_favourites]
 
+
   # GET / houses
 
   def index
@@ -59,6 +60,15 @@ class HousesController < ApplicationController
     redirect_to @house
   end
 
+  def my_listings
+    @user_houses = current_user.houses
+  end
+
+  def my_offers
+    @user_offers = current_user.offers.map do |offer|
+      offer.house
+    end
+  end
 
   private
 
