@@ -18,9 +18,13 @@
     </div>
 
     <div class="col-md-4">
-      <div class="d-flex justify-content-end mb-3">
+      <div class="d-flex justify-content-end mb-3", data-controller='favouritesbtn'>
         <% if current_user != @house.user %>
-          <%= button_to 'Add to Favourites', toggle_favourites_house_path(@house), method: :post, remote: true, class: "btn btn-primary" %>
+          <% if current_user.favourites.exists? %>
+            <%= button_to 'Remove from Favourites', toggle_favourites_house_path(@house), method: :post, remote: true, class: "btn btn-primary is-favourites", data: { action: 'click->favouritesbtn#toggle', favouritesbtn_target: 'favourites'} %>
+          <% else %>
+            <%= button_to 'Add to Favourites', toggle_favourites_house_path(@house), method: :post, remote: true, class: "btn btn-primary", data: { action: 'click->favouritesbtn#toggle', favouritesbtn_target: 'favourites'} %>
+          <% end %>
         <% end %>
       </div>
 

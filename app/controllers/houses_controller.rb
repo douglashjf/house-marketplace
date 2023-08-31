@@ -58,7 +58,6 @@ class HousesController < ApplicationController
     else
       Favourite.create(user: current_user, house_id: @house.id)
     end
-    redirect_to @house
   end
 
   def my_listings
