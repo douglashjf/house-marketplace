@@ -19,8 +19,10 @@
             <p class="card-text">Bathrooms: <%= house.bathroom %></p>
             <p class="card-text">Bedrooms: <%= house.bedroom %></p>
           </div>
-
-          <%= link_to "Check this out!", house_path(house), class: "btn btn-primary" %>
+          <div class="d-flex justify-content-between">
+            <%= link_to "Check this out!", house_path(house), class: "btn btn-primary" %>
+            <p class="card-text">Listed By: <%= house.user[:first_name] %></p>
+          </div>
         </div>
       </div>
     </div>
