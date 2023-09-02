@@ -9,6 +9,22 @@
   <%= link_to 'Looking to sell? Create new listing', new_house_path, class: "btn btn-success"%>
   <hr>
 
-  <%= render 'listing' %>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <%= render 'listing' %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <%# Geocoding for all houses in the database %>
+      <div data-controller="map"
+          id='map'
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+          data-map-markers-value="<%= @markers.to_json %>"
+          style="height: 100vh; position: sticky; top: 0;">
+      </div>
+    </div>
+  </div>
 
 </div>

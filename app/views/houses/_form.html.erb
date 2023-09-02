@@ -1,6 +1,10 @@
 <%= simple_form_for(@house) do |f| %>
     <%= f.input :photo, as: :file %>
-    <%= f.input :address, placeholder: "Address" %>
+    <%= f.input :address,
+        # address autocomplete
+        input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
+        wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+    %>
     <%= f.input :price, placeholder: "Price" %>
     <%= f.input :bedroom, placeholder: "bedroom" , collection: House::BEDROOM %>
     <%= f.input :bathroom, placeholder: "bathroom" , collection: House::BATHROOM %>

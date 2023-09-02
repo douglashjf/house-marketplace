@@ -13,6 +13,11 @@ class House < ApplicationRecord
   validates :bedroom, :bathroom, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 5 }
   validates :price, :square_feet, numericality: { only_integer: true, greater_than: 0 }
   has_many :offers, dependent: :destroy
+  # cloudinary images
   has_one_attached :photo
+  # favourites feature
   has_many :favourites, dependent: :destroy
+  # geocoder
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
 end
