@@ -1,17 +1,25 @@
 .search-input-group {
-  border: 20px solid grey;
+  border: 1px solid grey;
   border-radius: 10px;
   display: inline-flex;
   align-items: center;
-}
 
-.search-input {
-  border: none;
-  border-radius: 8px 0 0 8px;
-  padding: 0.375rem 0.75rem;
-}
+  .form-control {
+    border: none;
+    background-color: #f4f4f4;
+    border-radius: 10px 0 0 10px;
+    padding: 0.375rem 0.75rem;
+  }
 
-.search-button {
-  border: none;
-  border-radius: 0 8px 8px 0;
+  .btn {
+    border: none;
+
+    .dropdown-toggle {
+      border-radius: 0 10px 10px 0
+    }
+
+    &:hover {
+      color: #216bff; /* Change to your desired dark gray color */
+    }
+  }
 }
