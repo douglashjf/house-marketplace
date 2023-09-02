@@ -32,6 +32,14 @@
         <% end %>
       </div>
 
+  <hr>
+  <%# Geocoding %>
+  <div data-controller="map"
+    id='map'
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+    data-map-markers-value="<%= @markers.to_json %>"
+    style="width: 100%; height: 600px;"></div>
+
       <div class="sticky-top">
         <h2>Current Offers</h2>
         <table class="table table-striped table-hover">
@@ -66,9 +74,8 @@
     </div>
   </div>
 
-  <div class="mt-4">
-    <%= link_to 'Back to All Houses', houses_path, class: "btn btn-secondary" %>
-    <%= link_to 'Edit', edit_house_path(@house), class: "btn btn-info" if policy(@house).edit? %>
-    <%= link_to 'Delete', house_path(@house), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger" if policy(@house).destroy? %>
-  </div>
+  <%= link_to '< All houses', houses_path %> | <%= link_to 'edit', edit_house_path(@house) if policy(@house).edit? %>
+  <%= link_to 'Edit', edit_house_path(@house), class: "btn btn-info" if policy(@house).edit? %>
+  <%= link_to 'delete', house_path(@house), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if policy(@house).destroy? %>
+
 </div>

@@ -31,7 +31,7 @@ end
 
 House.create!(
   user_id: User.first.id,
-  address: "Serangoon Ave 1",
+  address: "Serangoon Avenue 1",
   price: 600000,
   bedroom: 2,
   bathroom: 2,
@@ -49,7 +49,7 @@ puts "Created house 1"
 
 House.create!(
   user_id: User.first.id,
-  address: "Bishan Ave 1",
+  address: "Bishan Avenue 1",
   price: 702100,
   bedroom: 4,
   bathroom: 1,
@@ -85,7 +85,7 @@ puts "Created house 3"
 
 House.create!(
   user_id: User.third.id,
-  address: "Orchard Road",
+  address: "Orchard Road, Singapore",
   price: 4000000,
   bedroom: 5,
   bathroom: 5,

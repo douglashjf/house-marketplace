@@ -6,10 +6,23 @@ class HousesController < ApplicationController
 
   def index
     @houses = policy_scope(House)
+    # The `geocoded` scope filters only flats with coordinates
+    @markers = @houses.geocoded.map do |house|
+      {
+        lat: house.latitude,
+        lng: house.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { house: house })
+      }
+    end
   end
 
   # GET / houses/:id
   def show
+    @markers = [
+      {
+        lat: @house.latitude,
+        lng: @house.longitude
+      }]
     @offer = Offer.new
   end
 
