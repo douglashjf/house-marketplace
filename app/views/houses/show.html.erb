@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-8">
       <h1><%= @house.address %></h1>
+      <p>Listed By: <%= @house.user[:first_name] %></p>
 
       <% if @house.photo.attached? %>
         <%= image_tag(cl_image_path @house.photo.key, width: 800, height: 600, crop: :fill, class: "img-fluid rounded") %>

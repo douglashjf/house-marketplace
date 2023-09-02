@@ -9,6 +9,7 @@
         <div class="card-body">
           <h5 class="card-title"><%= house.address %></h5>
           <p class="card-text"><strong>Minimum Ask Price:</strong> <%= number_to_currency(house.price, precision: 0) %></p>
+          <p class="card-text">Highest Offered Price: <%= number_to_currency(house.offers.maximum(:price), precision: 0) %></p>
           <div class="d-flex justify-content-between">
             <p class="card-text">Size in sqft: <%= house.square_feet %>sqft</p>
             <%# calculate the price per square feet within ERB %>
@@ -18,8 +19,10 @@
             <p class="card-text">Bathrooms: <%= house.bathroom %></p>
             <p class="card-text">Bedrooms: <%= house.bedroom %></p>
           </div>
-
-          <%= link_to "Check this out!", house_path(house), class: "btn btn-primary" %>
+          <div class="d-flex justify-content-between">
+            <%= link_to "Check this out!", house_path(house), class: "btn btn-primary" %>
+            <p class="card-text">Listed By: <%= house.user[:first_name] %></p>
+          </div>
         </div>
       </div>
     </div>
