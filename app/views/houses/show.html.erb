@@ -22,12 +22,15 @@
     <div class="col-md-4" data-controller='favouritesbtn'>
       <div class="text-end" data-favouritesbtn-target="flashMessageContainer"></div>
       <div class="d-flex justify-content-end mb-3", >
-        <% if current_user != @house.user && user_signed_in? == true %>
-
+        <% if current_user != @house.user%>
+            <% if user_signed_in? %>
           <% if current_user.favourites.exists? %>
             <%= button_to '➖ Remove from Favourites', toggle_favourites_house_path(@house), method: :post, remote: true, class: "btn btn-primary is-favourites", data: { action: 'click->favouritesbtn#toggle', favouritesbtn_target: 'favourites'} %>
           <% else %>
             <%= button_to '➕ Add to Favourites', toggle_favourites_house_path(@house), method: :post, remote: true, class: "btn btn-primary", data: { action: 'click->favouritesbtn#toggle', favouritesbtn_target: 'favourites'} %>
+          <% end %>
+          <% else %>
+           <%= button_to '➕ Add to Favourites', toggle_favourites_house_path(@house), method: :post, remote: true, class: "btn btn-primary", data: { action: 'click->favouritesbtn#toggle', favouritesbtn_target: 'favourites'} %>
           <% end %>
         <% end %>
       </div>
