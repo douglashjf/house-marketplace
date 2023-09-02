@@ -73,8 +73,10 @@
             <% end %>
           </tbody>
         </table>
-
-        <% if current_user != @house.user  && current_user.offers.length < 1 %>
+        <% house_has_offer_by_current_user = @house.offers.any? { |offer| offer.user == current_user } %>
+        <%= current_user.id %>
+        <%= @house.offers.map {|offer| offer.user.id}.join(',') %>
+        <% if current_user != @house.user && !house_has_offer_by_current_user && @house.offers.where(status: 'accepted').length < 1  %>
           <h2>Submit an Offer</h2>
           <%= simple_form_for [@house, @offer] do |f| %>
             <%= f.input :price, error: @offer.errors[:price], class: "form-control" %>
