@@ -8,9 +8,9 @@
           <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= house.address %></h5>
-            <p class="card-text">Price: <%= number_to_currency(house.price) %></p>
+            <p class="card-text">Price: <%= number_to_currency(house.price, precision: 0) %></p>
             <!-- You can customize the card content and add more information here -->
-            <%= link_to "Click for more info", house_path(house), class: "btn btn-primary" %>
+            <%= link_to "Check this out!", house_path(house), class: "btn btn-primary" %>
           </div>
         </div>
       </div>

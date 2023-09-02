@@ -7,16 +7,16 @@
           <%= image_tag(cl_image_path house.photo.key, width: 400, height: 300, crop: :fill) %>
         <% end %>
         <div class="card-body">
-          <h5 class="card-title"><%= link_to house.address, house_path(house) %></h5>
-          <p class="card-text"><strong>Minimum Ask Price:</strong> $<%= house.price %></p>
+          <h5 class="card-title"><%= house.address %></h5>
+          <p class="card-text"><strong>Minimum Ask Price:</strong> <%= number_to_currency(house.price, precision: 0) %></p>
           <div class="d-flex justify-content-between">
-            <p class="card-text">size in sqft: <%= house.square_feet %></p>
+            <p class="card-text">Size in sqft: <%= house.square_feet %>sqft</p>
             <%# calculate the price per square feet within ERB %>
-            <p class="card-text">price per sqft: $<%= (house.price.to_f / house.square_feet).round(2) %></p>
+            <p class="card-text">Price per sqft: <%= number_to_currency((house.price.to_f / house.square_feet).round(2)) %>psf</p>
           </div>
           <div class="d-flex justify-content-between">
-            <p class="card-text">bathrooms: <%= house.bathroom %></p>
-            <p class="card-text">bedrooms: <%= house.bedroom %></p>
+            <p class="card-text">Bathrooms: <%= house.bathroom %></p>
+            <p class="card-text">Bedrooms: <%= house.bedroom %></p>
           </div>
 
           <%= link_to "Check this out!", house_path(house), class: "btn btn-primary" %>

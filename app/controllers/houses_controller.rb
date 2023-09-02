@@ -23,6 +23,7 @@ class HousesController < ApplicationController
         lat: @house.latitude,
         lng: @house.longitude
       }]
+    @offer = Offer.new
   end
 
   # GET / houses/new
@@ -78,9 +79,7 @@ class HousesController < ApplicationController
   end
 
   def my_offers
-    @user_offers = current_user.offers.map do |offer|
-      offer.house
-    end
+    @user_offers = current_user.offers.includes(:house)
   end
 
   private
