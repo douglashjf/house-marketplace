@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-8">
       <h1><%= @house.address %></h1>
+      <p>Listed By: <%= @house.user[:first_name] %></p>
 
       <% if @house.photo.attached? %>
         <%= image_tag(cl_image_path @house.photo.key, width: 800, height: 600, crop: :fill, class: "img-fluid rounded") %>
@@ -15,12 +16,19 @@
       <p>Description: <%= @house.description %></p>
       <p>Type: <%= @house.property_type %></p>
       <p>Tenure: <%= @house.tenure %></p>
+
     </div>
 
-    <div class="col-md-4">
-      <div class="d-flex justify-content-end mb-3">
+    <div class="col-md-4" data-controller='favouritesbtn'>
+      <div class="text-end" data-favouritesbtn-target="flashMessageContainer"></div>
+      <div class="d-flex justify-content-end mb-3", >
         <% if current_user != @house.user %>
-          <%= button_to 'Add to Favourites', toggle_favourites_house_path(@house), method: :post, remote: true, class: "btn btn-primary" %>
+
+          <% if current_user.favourites.exists? %>
+            <%= button_to '➖ Remove from Favourites', toggle_favourites_house_path(@house), method: :post, remote: true, class: "btn btn-primary is-favourites", data: { action: 'click->favouritesbtn#toggle', favouritesbtn_target: 'favourites'} %>
+          <% else %>
+            <%= button_to '➕ Add to Favourites', toggle_favourites_house_path(@house), method: :post, remote: true, class: "btn btn-primary", data: { action: 'click->favouritesbtn#toggle', favouritesbtn_target: 'favourites'} %>
+          <% end %>
         <% end %>
       </div>
 
@@ -32,37 +40,39 @@
     data-map-markers-value="<%= @markers.to_json %>"
     style="width: 100%; height: 600px;"></div>
 
+      <div class="sticky-top">
+        <h2>Current Offers</h2>
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Price</th>
+              <th>Status</th>
+              <th>Date Created</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @house.offers.each_with_index do |offer, index| %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td><%= number_to_currency(offer.price, precision: 0) %></td>
+                <td><%= offer.status %></td>
+                <td><%= offer.created_at.strftime('%Y-%m-%d') %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
 
-  <h2>Current Offers</h2>
-
-  <table class="table table-striped table-hover">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Price</th>
-        <th>Status</th>
-        <th>Date Created</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @house.offers.each_with_index do |offer, index| %>
-        <tr>
-          <td><%= index + 1 %></td>
-          <td><%= number_to_currency(offer.price, precision: 0) %></td>
-          <td><%= offer.status %></td>
-          <td><%= offer.created_at.strftime('%Y-%m-%d') %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <% if current_user != @house.user %>
-    <h2>Submit an Offer</h2>
-    <%= simple_form_for [@house, @offer] do |f| %>
-      <%= f.input :price, error: @offer.errors[:price], class: "form-control" %>
-      <%= f.submit "Submit Offer", class: "btn btn-primary" %>
-    <% end %>
-  <% end %>
+        <% if current_user != @house.user %>
+          <h2>Submit an Offer</h2>
+          <%= simple_form_for [@house, @offer] do |f| %>
+            <%= f.input :price, error: @offer.errors[:price], class: "form-control" %>
+            <%= f.submit "Submit Offer", class: "btn btn-primary" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
   <%= link_to '< All houses', houses_path %> | <%= link_to 'edit', edit_house_path(@house) if policy(@house).edit? %>
   <%= link_to 'Edit', edit_house_path(@house), class: "btn btn-info" if policy(@house).edit? %>

@@ -68,10 +68,11 @@ class HousesController < ApplicationController
   def toggle_favourites
     if current_user.favourites.exists?(house_id: @house.id)
       current_user.favourites.where(house_id: @house.id).destroy_all
+      # flash[:notice] = "Page removed from favourites"
     else
       Favourite.create(user: current_user, house_id: @house.id)
+      # flash[:notice] = "Page added to favourites"
     end
-    redirect_to @house
   end
 
   def my_listings
