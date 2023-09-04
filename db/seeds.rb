@@ -17,20 +17,70 @@ Favourite.destroy_all
 
 puts "Creating new data"
 
-i = 1
-10.times do
-  User.create!(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    email: Faker::Name.first_name + "@gmail.com",
-    password: "password"
-    )
-  puts "Created user No. #{i}"
-  i += 1
-end
+# i = 1
+# 10.times do
+#   User.create!(
+#     first_name: Faker::Name.first_name,
+#     last_name: Faker::Name.last_name,
+#     email: Faker::Name.first_name + "@gmail.com",
+#     password: "password"
+#     )
+#   puts "Created user No. #{i}"
+#   i += 1
+# end
 
-House.create!(
-  user_id: User.first.id,
+# Doug: Buyer
+user_doug = User.create!(
+  first_name: "Doug",
+  last_name: "Hsu",
+  email: "doug@gmail.com",
+  password: "password"
+)
+puts "Created Douglas Buyer"
+
+# Jacob: Seller
+user_jacob = User.create!(
+  first_name: "Jacob",
+  last_name: "Khong",
+  email: "jacob@gmail.com",
+  password: "password"
+)
+puts "Created Jacob Seller"
+
+user_bob = User.create(
+  first_name: 'Bob',
+  last_name: 'Bobberson',
+  email: 'bob.bobberson@gmail.com',
+  password: 'password'
+)
+puts 'Created Bob user'
+
+user_anna = User.create(
+  first_name: 'Anna',
+  last_name: 'Annason',
+  email: 'anna.annason@gmail.com',
+  password: 'password'
+)
+puts 'Created Anna user'
+
+user_yc = User.create(
+  first_name: 'YC',
+  last_name: 'Low',
+  email: 'yc.low@gmail.com',
+  password: 'password'
+)
+puts 'Created YC user'
+
+user_alex = User.create(
+  first_name: 'Alex',
+  last_name: 'Alexson',
+  email: 'alex.alexson@gmail.com',
+  password: 'password'
+)
+puts 'Created Alex user'
+
+house_1 = House.create!(
+  user_id: user_jacob.id,
   address: "Serangoon Avenue 1",
   price: 600000,
   bedroom: 2,
@@ -48,8 +98,29 @@ house.photo.attach(io: file, filename: "house1.png", content_type: "image/png")
 house.save
 puts "Created house 1"
 
-House.create!(
-  user_id: User.first.id,
+Offer.create!(
+  user_id: user_doug.id,
+  house_id: house_1.id,
+  price: 700000,
+  status: "pending"
+)
+
+Offer.create!(
+  user_id: user_alex.id,
+  house_id: house_1.id,
+  price: 720000,
+  status: "pending"
+)
+
+Offer.create!(
+  user_id: user_yc.id,
+  house_id: house_1.id,
+  price: 750000,
+  status: "pending"
+)
+
+house_2 = House.create!(
+  user_id: user_jacob.id,
   address: "Bishan Avenue 1",
   price: 702100,
   bedroom: 4,
@@ -67,8 +138,29 @@ house.photo.attach(io: file, filename: "house2.png", content_type: "image/png")
 house.save
 puts "Created house 2"
 
-House.create!(
-  user_id: User.second.id,
+Offer.create!(
+  user_id: user_bob.id,
+  house_id: house_2.id,
+  price: 750000,
+  status: "pending"
+)
+
+Offer.create!(
+  user_id: user_alex.id,
+  house_id: house_2.id,
+  price: 800000,
+  status: "pending"
+)
+
+Offer.create!(
+  user_id: user_doug.id,
+  house_id: house_2.id,
+  price: 730000,
+  status: "pending"
+)
+
+house_3 = House.create!(
+  user_id: user_anna.id,
   address: "Ang Mo Kio Avenue 1",
   price: 800000,
   bedroom: 3,
@@ -86,8 +178,36 @@ house.photo.attach(io: file, filename: "house3.png", content_type: "image/png")
 house.save
 puts "Created house 3"
 
-House.create!(
-  user_id: User.third.id,
+Offer.create!(
+  user_id: user_bob.id,
+  house_id: house_3.id,
+  price: 854100,
+  status: "pending"
+)
+
+Offer.create!(
+  user_id: user_alex.id,
+  house_id: house_3.id,
+  price: 900000,
+  status: "pending"
+)
+
+Offer.create!(
+  user_id: user_yc.id,
+  house_id: house_3.id,
+  price: 910000,
+  status: "pending"
+)
+
+Offer.create!(
+  user_id: user_doug.id,
+  house_id: house_3.id,
+  price: 1000000,
+  status: "pending"
+)
+
+house_4 = House.create!(
+  user_id: user_anna.id,
   address: "Orchard Road, Singapore",
   price: 4000000,
   bedroom: 5,
@@ -105,8 +225,22 @@ house.photo.attach(io: file, filename: "house4.png", content_type: "image/png")
 house.save
 puts "Created house 4"
 
-House.create!(
-  user_id: User.fourth.id,
+Offer.create!(
+  user_id: user_bob.id,
+  house_id: house_4.id,
+  price: 4000010,
+  status: "pending"
+)
+
+Offer.create!(
+  user_id: user_alex.id,
+  house_id: house_4.id,
+  price: 4050000,
+  status: "pending"
+)
+
+house_5 = House.create!(
+  user_id: user_anna.id,
   address: "Raffles Place",
   price: 5000000,
   bedroom: 4,
@@ -124,8 +258,22 @@ house.photo.attach(io: file, filename: "house5.png", content_type: "image/png")
 house.save
 puts "Created house 5"
 
-House.create!(
-  user_id: User.fourth.id,
+Offer.create!(
+  user_id: user_bob.id,
+  house_id: house_5.id,
+  price: 10000010,
+  status: "pending"
+)
+
+Offer.create!(
+  user_id: user_alex.id,
+  house_id: house_5.id,
+  price: 11000000,
+  status: "pending"
+)
+
+house_6 = House.create!(
+  user_id: user_bob.id,
   address: "Tanjong Pagar",
   price: 6000000,
   bedroom: 2,
@@ -143,8 +291,22 @@ house.photo.attach(io: file, filename: "house6.png", content_type: "image/png")
 house.save
 puts "Created house 6"
 
-House.create!(
-  user_id: User.all[5].id,
+Offer.create!(
+  user_id: user_bob.id,
+  house_id: house_6.id,
+  price: 10000010,
+  status: "pending"
+)
+
+Offer.create!(
+  user_id: user_alex.id,
+  house_id: house_6.id,
+  price: 11000000,
+  status: "pending"
+)
+
+house_7 = House.create!(
+  user_id: user_bob.id,
   address: "Yishun Avenue 1",
   price: 950000,
   bedroom: 2,
@@ -162,9 +324,23 @@ house.photo.attach(io: file, filename: "house7.png", content_type: "image/png")
 house.save
 puts "Created house 7"
 
-House.create!(
-  user_id: User.all[6].id,
-  address: "pasir ris",
+Offer.create!(
+  user_id: user_bob.id,
+  house_id: house_7.id,
+  price: 1000010,
+  status: "pending"
+)
+
+Offer.create!(
+  user_id: user_alex.id,
+  house_id: house_7.id,
+  price: 1100000,
+  status: "pending"
+)
+
+house_8 = House.create!(
+  user_id: user_bob.id,
+  address: "Paris Ris",
   price: 480000,
   bedroom: 2,
   bathroom: 1,
@@ -181,43 +357,96 @@ house.photo.attach(io: file, filename: "house8.png", content_type: "image/png")
 house.save
 puts "Created house 8"
 
-# House.create!(
-#   user_id: User.eighth.id,
-#   address: "bishan ave 4",
-#   price: 2500000,
-#   bedroom: 4,
-#   bathroom: 1,
-#   square_feet: 921,
-#   description: "15 mins from the mrt",
-#   property_type: "Landed",
-#   tenure: "999-year"
-# )
-# puts "Created house 9"
+Offer.create!(
+  user_id: user_bob.id,
+  house_id: house_8.id,
+  price: 500000,
+  status: "pending"
+)
 
-# House.create!(
-#   user_id: User.nineth.id,
-#   address: "cck",
-#   price: 3000000,
-#   bedroom: 5,
-#   bathroom: 5,
-#   square_feet: 1250,
-#   description: "Away from the hustle and bustle",
-#   property_type: "Landed",
-#   tenure: "freehold"
-# )
-# puts "Created house 10"
+Offer.create!(
+  user_id: user_alex.id,
+  house_id: house_8.id,
+  price: 600000,
+  status: "pending"
+)
 
-j = 1
-10.times do
-  Offer.create!(
-    user_id: User.all.sample.id,
-    house_id: House.all.sample.id,
-    price: 10000000,
-    status: ["pending", "accepted", "declined"].sample
-  )
-  puts "Created offer #{j}"
-  j += 1
-end
+house_9 = House.create!(
+  user_id: user_bob.id,
+  address: "Bukit Timah",
+  price: 2500000,
+  bedroom: 4,
+  bathroom: 1,
+  square_feet: 921,
+  description: "15 mins from the mrt",
+  property_type: "Landed",
+  tenure: "999-year",
+  region: "Central Singapore Community Development Council"
+)
+# Import seed house images
+house = House.last
+file = URI.open("https://sg1-cdn.pgimgs.com/listing/23779849/UPHO.134849182.V550/135-Bishan-Street-12-Ang-Mo-Kio-Bishan-Thomson-Singapore.jpg")
+house.photo.attach(io: file, filename: "house8.png", content_type: "image/png")
+house.save
+puts "Created house 9"
+
+Offer.create!(
+  user_id: user_bob.id,
+  house_id: house_9.id,
+  price: 10000010,
+  status: "pending"
+)
+
+Offer.create!(
+  user_id: user_alex.id,
+  house_id: house_9.id,
+  price: 11000000,
+  status: "pending"
+)
+
+house_10 = House.create!(
+  user_id: user_bob.id,
+  address: "Boon Lay",
+  price: 300000,
+  bedroom: 5,
+  bathroom: 5,
+  square_feet: 1250,
+  description: "Away from the hustle and bustle",
+  property_type: "Landed",
+  tenure: "freehold",
+  region: "South West Community Development Council"
+)
+house = House.last
+file = URI.open("https://sg1-cdn.pgimgs.com/listing/24534214/UPHO.142117643.V550/694D-Woodlands-Drive-62-Admiralty-Woodlands-Singapore.jpg")
+house.photo.attach(io: file, filename: "house8.png", content_type: "image/png")
+house.save
+puts "Created house 10"
+
+Offer.create!(
+  user_id: user_bob.id,
+  house_id: house_10.id,
+  price: 1000010,
+  status: "pending"
+)
+
+Offer.create!(
+  user_id: user_alex.id,
+  house_id: house_10.id,
+  price: 1100000,
+  status: "pending"
+)
+
+# j = 1
+# 10.times do
+#   Offer.create!(
+#     user_id: User.all.sample.id,
+#     house_id: House.all.sample.id,
+#     price: 10000000,
+#     status: "pending"
+#   )
+#   puts "Created offer #{j}"
+#   j += 1
+# end
 
 Favourite.create!(
   user_id: User.last.id,
