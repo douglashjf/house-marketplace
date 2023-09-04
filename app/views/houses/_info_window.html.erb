@@ -1,3 +1,5 @@
-<h4><%= house.address %></h4>
-<p> Minimum Ask Price: $<%= house.price %> </p>
-<p> Type: <%= house.property_type %> </p>
+<div data-controller="scroll" data-scroll-house-value="<%= house.id %>">
+  <h4><%= house.address %></h4>
+  <p> Minimum Ask Price: $<%= house.price %> </p>
+  <p> Type: <%= house.property_type %> </p>
+</div>

@@ -20,4 +20,6 @@ class House < ApplicationRecord
   # geocoder
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
+  # check that region exists from geocoder result
+  validates :region, presence: true
 end
