@@ -7,7 +7,7 @@
       <% if @house.photo.attached? %>
         <%= image_tag(cl_image_path @house.photo.key, width: 800, height: 600, crop: :fill, class: "img-fluid rounded") %>
       <% end %>
-
+      <p>Region: <%= @house.region %></p>
       <p>Minimum Ask Price: <%= number_to_currency(@house.price) %></p>
       <p>Bedrooms: <%= @house.bedroom %></p>
       <p>Bathrooms: <%= @house.bathroom %></p>
@@ -22,10 +22,13 @@
     <div class="col-md-4" data-controller='favouritesbtn'>
       <div class="text-end" data-favouritesbtn-target="flashMessageContainer"></div>
       <div class="d-flex justify-content-end mb-3", >
-        <% if current_user != @house.user %>
-
-          <% if current_user.favourites.exists? %>
-            <%= button_to '➖ Remove from Favourites', toggle_favourites_house_path(@house), method: :post, remote: true, class: "btn btn-primary is-favourites", data: { action: 'click->favouritesbtn#toggle', favouritesbtn_target: 'favourites'} %>
+        <% if current_user != @house.user%>
+          <% if user_signed_in? %>
+            <% if current_user.favourites.exists? %>
+              <%= button_to '➖ Remove from Favourites', toggle_favourites_house_path(@house), method: :post, remote: true, class: "btn btn-primary is-favourites", data: { action: 'click->favouritesbtn#toggle', favouritesbtn_target: 'favourites'} %>
+            <% else %>
+              <%= button_to '➕ Add to Favourites', toggle_favourites_house_path(@house), method: :post, remote: true, class: "btn btn-primary", data: { action: 'click->favouritesbtn#toggle', favouritesbtn_target: 'favourites'} %>
+            <% end %>
           <% else %>
             <%= button_to '➕ Add to Favourites', toggle_favourites_house_path(@house), method: :post, remote: true, class: "btn btn-primary", data: { action: 'click->favouritesbtn#toggle', favouritesbtn_target: 'favourites'} %>
           <% end %>
@@ -58,12 +61,25 @@
                 <td><%= number_to_currency(offer.price, precision: 0) %></td>
                 <td><%= offer.status %></td>
                 <td><%= offer.created_at.strftime('%Y-%m-%d') %></td>
+                <% if offer.user == current_user && offer.status == 'pending'  %>
+                  <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#offer-<%= offer.id%>">
+                      Edit Offer
+                    </button>
+                  </td>
+                  <td>
+                     <%= link_to 'Delete Offer', offer_path(offer), class: "btn btn-primary", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                  </td>
+
+                <% end %>
               </tr>
             <% end %>
           </tbody>
         </table>
-
-        <% if current_user != @house.user %>
+        <% house_has_offer_by_current_user = @house.offers.any? { |offer| offer.user == current_user } %>
+        <%#= current_user.id %>
+        <%#= @house.offers.map {|offer| offer.user.id}.join(',') %>
+        <% if current_user != @house.user && !house_has_offer_by_current_user && @house.offers.where(status: 'accepted').length < 1  %>
           <h2>Submit an Offer</h2>
           <%= simple_form_for [@house, @offer] do |f| %>
             <%= f.input :price, error: @offer.errors[:price], class: "form-control" %>
@@ -79,3 +95,25 @@
   <%= link_to 'delete', house_path(@house), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if policy(@house).destroy? %>
 
 </div>
+
+<% @house.offers.each_with_index do |offer, index| %>
+                  <div class="modal fade" id="offer-<%= offer.id%>" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5">Modal title</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <%= simple_form_for [@house, offer] do |f| %>
+                            <%= f.input :price, error: offer.errors[:price], class: "form-control" %>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <%= f.submit "Submit Offer", class: "btn btn-primary" %>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+<% end %>

@@ -1,21 +1,19 @@
 <div class="input-group search-input-group">
-
   <%= form_with url: houses_path, method: :get, class: "d-flex flex-grow-1" do %>
     <%= text_field_tag :query,
           params[:query],
           class: "form-control",
           placeholder: "Building or Address"
       %>
-    <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
-
-
+    <%= submit_tag " ", class: "btn search-button" do %>
+      <i class="fa-solid fa-magnifying-glass"></i>
+    <% end %>
   <% end %>
 
 
-  <!-- Button Dropdown -->
+<!-- Button Dropdown -->
   <div class="input-group-append">
-    <button class="btn btn-primary dropdown-toggle search-button-dropdown" id="filter-button" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Filter
+    <button class="btn dropdown-toggle search-button-dropdown" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     </button>
     <div class="dropdown-menu">
       <a class="dropdown-item" href="#">Action</a>

@@ -38,7 +38,8 @@ House.create!(
   square_feet: 700,
   description: "Cosy, homely, 10mins from the mrt",
   property_type: "HDB",
-  tenure: "99-year"
+  tenure: "99-year",
+  region: "North East Community Development Council"
 )
 # Import seed house images (first 6 only)
 house = House.last
@@ -56,7 +57,8 @@ House.create!(
   square_feet: 921,
   description: "Cooling, lively, 31mins from the mrt",
   property_type: "Condo",
-  tenure: "999-year"
+  tenure: "999-year",
+  region: "Central Singapore Community Development Council"
 )
 # Import seed house images (first 6 only)
 house = House.last
@@ -74,7 +76,8 @@ House.create!(
   square_feet: 850,
   description: "South facing, high storey",
   property_type: "Condo",
-  tenure: "99-year"
+  tenure: "99-year",
+  region: "Central Singapore Community Development Council"
 )
 # Import seed house images (first 6 only)
 house = House.last
@@ -92,7 +95,8 @@ House.create!(
   square_feet: 1500,
   description: "Close to town, well-renovated",
   property_type: "Landed",
-  tenure: "freehold"
+  tenure: "freehold",
+  region: "Central Singapore Community Development Council"
 )
 # Import seed house cover images (first 6 only)
 house = House.last
@@ -110,7 +114,8 @@ House.create!(
   square_feet: 1100,
   description: "Near to tourist areas",
   property_type: "Condo",
-  tenure: "999-year"
+  tenure: "999-year",
+  region: "Central Singapore Community Development Council"
 )
 # Import seed house images (first 6 only)
 house = House.last
@@ -128,40 +133,53 @@ House.create!(
   square_feet: 700,
   description: "Close to CBD, very airy!",
   property_type: "HDB",
-  tenure: "99-year"
+  tenure: "99-year",
+  region: "Central Singapore Community Development Council"
 )
-# Import seed house images (first 6 only)
+# Import seed house images
 house = House.last
 file = URI.open("https://www.retalkasia.com/sites/default/files/styles/article-full/public/imagereader_5_24.jpg?itok=6Af7E8CN")
 house.photo.attach(io: file, filename: "house6.png", content_type: "image/png")
 house.save
 puts "Created house 6"
 
-# House.create!(
-#   user_id: User.order(:id).offset(5).limit(1).first,
-#   address: "tiong bahru",
-#   price: 950000,
-#   bedroom: 3,
-#   bathroom: 3,
-#   square_feet: 920,
-#   description: "Cooling, lively, 31mins from the mrt",
-#   property_type: "Condo",
-#   tenure: "999-year"
-# )
-# puts "Created house 7"
+House.create!(
+  user_id: User.all[5].id,
+  address: "Yishun Avenue 1",
+  price: 950000,
+  bedroom: 2,
+  bathroom: 2,
+  square_feet: 920,
+  description: "Cooling, lively, 10mins from the mrt",
+  property_type: "HDB",
+  tenure: "999-year",
+  region: "North East Community Development Council"
+)
+# Import seed house images
+house = House.last
+file = URI.open("https://d1hy6t2xeg0mdl.cloudfront.net/image/1834/9741cd6fa8/standard-nofill")
+house.photo.attach(io: file, filename: "house7.png", content_type: "image/png")
+house.save
+puts "Created house 7"
 
-# House.create!(
-#   user_id: User.order(:id).offset(6).limit(1).first,
-#   address: "pasir ris",
-#   price: 480000,
-#   bedroom: 2,
-#   bathroom: 1,
-#   square_feet: 600,
-#   description: "Quiet, near to good schools",
-#   property_type: "HDB",
-#   tenure: "99-year"
-# )
-# puts "Created house 8"
+House.create!(
+  user_id: User.all[6].id,
+  address: "pasir ris",
+  price: 480000,
+  bedroom: 2,
+  bathroom: 1,
+  square_feet: 600,
+  description: "Quiet, near to good schools",
+  property_type: "HDB",
+  tenure: "99-year",
+  region: "North East Community Development Council"
+)
+# Import seed house images
+house = House.last
+file = URI.open("https://sg1-cdn.pgimgs.com/listing/24520581/UPHO.141959898.V550/643-Yishun-Street-61-Sembawang-Yishun-Singapore.jpg")
+house.photo.attach(io: file, filename: "house8.png", content_type: "image/png")
+house.save
+puts "Created house 8"
 
 # House.create!(
 #   user_id: User.eighth.id,
