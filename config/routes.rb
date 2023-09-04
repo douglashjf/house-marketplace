@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     member do
       post :toggle_favourites
     end
-    resources :offers, only: %i[index create]
+    resources :offers, only: %i[index create update]
     collection do
       get 'my_listings'
       get 'my_offers'

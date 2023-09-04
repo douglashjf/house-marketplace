@@ -1,13 +1,12 @@
 class OffersController < ApplicationController
   # We need to find the house associated with the offer
-  before_action :set_house, only: %i[new create]
+  before_action :set_house, only: %i[new update create]
 
   def new
     @offer = Offer.new
   end
 
   def create
-    @house = House.find(params[:house_id])
     authorize @house
     @offer = Offer.new(offer_params)
     @offer.house = @house
@@ -20,9 +19,26 @@ class OffersController < ApplicationController
     end
   end
 
+  # def edit
+  #   authorize @house
+  #   @offer = Offer.find(params[:id])
+    # authorize @offer
+  # end
+
+  def update
+    authorize @house
+    @offer = Offer.find(params[:id])
+    if @offer.update(offer_params)
+      redirect_to house_path(@house)
+    else
+      render 'house/show', status: :unprocessable_entity
+    end
+  end
+
   # we don't need a house to destroy,
   def destroy
     @offer = Offer.find(params[:id])
+    authorize @offer
     @offer.destroy
     redirect_to house_path(@offer.house), status: :see_other
   end
@@ -35,6 +51,6 @@ class OffersController < ApplicationController
 
   # strong params
   def offer_params
-    params.require(:offer).permit(:price)
+    params.require(:offer).permit(:price, :status)
   end
 end
