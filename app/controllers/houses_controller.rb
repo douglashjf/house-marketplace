@@ -1,5 +1,6 @@
 class HousesController < ApplicationController
   before_action :set_house, only: %i[show edit update destroy toggle_favourites]
+  skip_before_action :authenticate_user!, only: %i[show index]
 
   # GET / houses
 
