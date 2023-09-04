@@ -1,9 +1,13 @@
 <div class="input-group search-input-group">
-  <input type="text" class="form-control" placeholder="Building or Address">
-
-  <!-- Single Button -->
-  <%= link_to houses_path, class: "btn search-button", type: "button" do %>
-    <i class="fa-solid fa-magnifying-glass"></i>
+  <%= form_with url: houses_path, method: :get, class: "d-flex flex-grow-1" do %>
+    <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Building or Address"
+      %>
+    <%= submit_tag " ", class: "btn search-button" do %>
+      <i class="fa-solid fa-magnifying-glass"></i>
+    <% end %>
   <% end %>
 
 

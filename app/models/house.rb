@@ -4,6 +4,14 @@ class House < ApplicationRecord
   BATHROOM = [1, 2, 3, 4, 5]
   PROPERTY_TYPE = ["HDB", "Condo", "Landed"]
 
+  # pg search
+  include PgSearch::Model
+  pg_search_scope :search_by_address,
+    against: :address,
+    using: {
+      tsearch: { prefix: true }
+    }
+
   def favourited_by?(user)
     user.favourites.exists?(id)
   end
