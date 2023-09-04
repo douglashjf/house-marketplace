@@ -67,7 +67,15 @@
                   <td>
                      <%= link_to 'Delete Offer', offer_path(offer), class: "btn btn-primary", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
                   </td>
+                <% end %>
+                <% if House.find(offer.house_id).user == current_user && offer.status == 'pending'  %>
 
+                  <td>
+                    <%= button_to 'Accept', house_offer_path(offer), method: :patch, remote: true, class: 'update-offer-button btn btn-success' %>
+                  </td>
+                  <td>
+                     <%= link_to 'Decline', house_offer_path(offer), method: :patch, remote: true, class: 'decline-offer-button btn btn-danger' %>
+                  </td>
                 <% end %>
               </tr>
             <% end %>

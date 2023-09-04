@@ -28,10 +28,15 @@ class OffersController < ApplicationController
   def update
     authorize @house
     @offer = Offer.find(params[:id])
-    if @offer.update(offer_params)
-      redirect_to house_path(@house)
-    else
-      render 'house/show', status: :unprocessable_entity
+
+    respond_to do |format|
+      if @offer.update(offer_params)
+        format.html { redirect_to house_path(@house) }
+        format.js
+      else
+        format.html { render 'house/show', status: :unprocessable_entity }
+        format.js
+      end
     end
   end
 
