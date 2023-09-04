@@ -17,8 +17,21 @@ export default class extends Controller {
     this.geocoder.on("clear", () => this.#clearInputValue())
   }
 
+  // Creating the value based on API results
   #setInputValue(event) {
     this.addressTarget.value = event.result["place_name"]
+    const regionContext = this.findRegionContext(event.result.context);
+    if (regionContext) {
+      const regionName = regionContext.text;
+      const regionInput = document.getElementById("house_region");
+      regionInput.value = regionName; // Set the region field value
+      console.log("Region:", regionName);
+    }
+  }
+
+  // to call from setInputValue to search the API output results
+  findRegionContext(contextArray) {
+    return contextArray.find(context => context.id.startsWith("region."));
   }
 
   #clearInputValue() {

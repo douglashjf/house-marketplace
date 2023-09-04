@@ -7,7 +7,7 @@
       <% if @house.photo.attached? %>
         <%= image_tag(cl_image_path @house.photo.key, width: 800, height: 600, crop: :fill, class: "img-fluid rounded") %>
       <% end %>
-
+      <p>Region: <%= @house.region %></p>
       <p>Minimum Ask Price: <%= number_to_currency(@house.price) %></p>
       <p>Bedrooms: <%= @house.bedroom %></p>
       <p>Bathrooms: <%= @house.bathroom %></p>

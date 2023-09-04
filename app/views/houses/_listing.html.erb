@@ -1,6 +1,6 @@
 <div class="row">
   <% @houses.each do |house| %>
-    <div class="col-md-6 mb-3">
+    <div class="col-md-6 mb-3" id="house-<%= house.id %>" class="scroll-offset">
       <div class="card" style="width: 100%;">
         <!-- Can replace the following image tag with your actual image using image_tag -->
         <% if house.photo.attached? %>
@@ -8,6 +8,7 @@
         <% end %>
         <div class="card-body">
           <h5 class="card-title"><%= house.address %></h5>
+          <p class="card-text">Region: <%= house.region %></p>
           <p class="card-text"><strong>Minimum Ask Price:</strong> <%= number_to_currency(house.price, precision: 0) %></p>
           <p class="card-text">Highest Offered Price: <%= number_to_currency(house.offers.maximum(:price), precision: 0) %></p>
           <div class="d-flex justify-content-between">

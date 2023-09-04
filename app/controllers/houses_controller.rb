@@ -39,6 +39,7 @@ class HousesController < ApplicationController
     @house = House.new(house_params)
     @house.user = current_user
     authorize(@house)
+
     if @house.save
       redirect_to house_path(@house)
     else
@@ -91,6 +92,6 @@ class HousesController < ApplicationController
   end
 
   def house_params
-    params.require(:house).permit(:photo, :address, :price, :bedroom, :bathroom, :square_feet, :description, :property_type, :tenure)
+    params.require(:house).permit(:photo, :address, :price, :bedroom, :bathroom, :square_feet, :description, :property_type, :tenure, :region)
   end
 end
