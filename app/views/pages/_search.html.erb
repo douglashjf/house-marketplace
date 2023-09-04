@@ -1,15 +1,20 @@
 <div class="input-group search-input-group">
-  <input type="text" class="form-control search-input" placeholder="Building or Address" aria-label="Building or Addresss with Search and Filter">
 
-  <!-- Single Button -->
-  <%= link_to houses_path, class: "btn btn-primary search-button", type: "button" do %>
-    Search
+  <%= form_with url: houses_path, method: :get, class: "d-flex flex-grow-1" do %>
+    <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Building or Address"
+      %>
+    <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+
+
   <% end %>
 
 
   <!-- Button Dropdown -->
   <div class="input-group-append">
-    <button class="btn btn-primary dropdown-toggle search-button-dropdown" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button class="btn btn-primary dropdown-toggle search-button-dropdown" id="filter-button" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Filter
     </button>
     <div class="dropdown-menu">
