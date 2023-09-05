@@ -91,11 +91,20 @@ house_1 = House.create!(
   tenure: "99-year",
   region: "North East Community Development Council"
 )
-# Import seed house images (first 6 only)
-file = URI.open("https://auctionjiacontent.s3.amazonaws.com/osproperty/properties/193/medium/1931598585858401-Serangoon-Ave-1-Living-Room.jpg")
-house_1.photos.attach(io: file, filename: "house1.png", content_type: "image/png")
-house_1.save
-puts "Created house 1"
+# Array of photo URLs
+photo_urls = [
+  "https://sg1-cdn.pgimgs.com/listing/24672217/UPHO.143661959.V800/Sol-Acres-Dairy-Farm-Bukit-Panjang-Choa-Chu-Kang-Singapore.jpg",
+  "https://sg1-cdn.pgimgs.com/listing/24672217/UPHO.143722231.V800/Sol-Acres-Dairy-Farm-Bukit-Panjang-Choa-Chu-Kang-Singapore.jpg",
+  "https://sg1-cdn.pgimgs.com/listing/24672217/UPHO.143722232.V800/Sol-Acres-Dairy-Farm-Bukit-Panjang-Choa-Chu-Kang-Singapore.jpg"
+]
+
+# Attach photos using a loop
+photo_urls.each do |url|
+  file = URI.open(url)
+  house_1.photos.attach(io: file, filename: "house_#{house_1.id}_photo#{photo_urls.index(url) + 1}.jpg", content_type: "image/jpeg")
+end
+
+puts "Created house 1 with multiple photos"
 
 Offer.create!(
   user_id: user_doug.id,
@@ -130,11 +139,21 @@ house_2 = House.create!(
   tenure: "999-year",
   region: "Central Singapore Community Development Council"
 )
-# Import seed house images (first 6 only)
-file = URI.open("https://s3-ap-southeast-1.amazonaws.com/static.streetsine/Listing%20Photos/Circle/97462521/L/374066951_mobile.jpg?20220908222907")
-house_2.photos.attach(io: file, filename: "house2.png", content_type: "image/png")
-house_2.save
-puts "Created house 2"
+
+# Array of photo URLs
+photo_urls = [
+  "https://sg1-cdn.pgimgs.com/listing/24645902/UPHO.143355337.V800/658B-Punggol-East-Hougang-Punggol-Sengkang-Singapore.jpg",
+  "https://sg1-cdn.pgimgs.com/listing/24645902/UPHO.143355354.V800/658B-Punggol-East-Hougang-Punggol-Sengkang-Singapore.jpg",
+  "https://sg1-cdn.pgimgs.com/listing/24645902/UPHO.143355343.V800/658B-Punggol-East-Hougang-Punggol-Sengkang-Singapore.jpg"
+]
+
+# Attach photos using a loop
+photo_urls.each do |url|
+  file = URI.open(url)
+  house_2.photos.attach(io: file, filename: "house_#{house_2.id}_photo#{photo_urls.index(url) + 1}.jpg", content_type: "image/jpeg")
+end
+
+puts "Created house 2 with multiple photos"
 
 Offer.create!(
   user_id: user_bob.id,
@@ -169,11 +188,20 @@ house_3 = House.create!(
   tenure: "99-year",
   region: "Central Singapore Community Development Council"
 )
-# Import seed house images (first 6 only)
-file = URI.open("https://alanweeproperty.com/wp-content/uploads/2022/08/301-Ang-Mo-Kio-Ave-3-Jumbo-Flat-Living-Room.jpg")
-house_3.photos.attach(io: file, filename: "house3.png", content_type: "image/png")
-house_3.save
-puts "Created house 3"
+# Array of photo URLs
+photo_urls = [
+  "https://sg1-cdn.pgimgs.com/listing/24119000/UPHO.142770548.V800/Avenue-South-Residence-Alexandra-Commonwealth-Singapore.jpg",
+  "https://sg1-cdn.pgimgs.com/listing/24119000/UPHO.142770557.V800/Avenue-South-Residence-Alexandra-Commonwealth-Singapore.jpg",
+  "https://sg1-cdn.pgimgs.com/listing/24119000/UPHO.142770558.V800/Avenue-South-Residence-Alexandra-Commonwealth-Singapore.jpg"
+]
+
+# Attach photos using a loop
+photo_urls.each do |url|
+  file = URI.open(url)
+  house_3.photos.attach(io: file, filename: "house_#{house_3.id}_photo#{photo_urls.index(url) + 1}.jpg", content_type: "image/jpeg")
+end
+
+puts "Created house 3 with multiple photos"
 
 Offer.create!(
   user_id: user_bob.id,
@@ -216,10 +244,19 @@ house_4 = House.create!(
   region: "Central Singapore Community Development Council"
 )
 # Import seed house cover images (first 6 only)
-file = URI.open("https://sg1-cdn.pgimgs.com/listing/24493503/UPHO.143170962.V550/Cairnhill-Residences-Orchard-River-Valley-Singapore.jpg")
-house_4.photos.attach(io: file, filename: "house4.png", content_type: "image/png")
-house_4.save
-puts "Created house 4"
+photo_urls = [
+  "https://sg1-cdn.pgimgs.com/listing/24638334/UPHO.143265760.V800/One-Draycott-Tanglin-Holland-Bukit-Timah-Singapore.jpg",
+  "https://sg1-cdn.pgimgs.com/listing/24638334/UPHO.143265757.V800/One-Draycott-Tanglin-Holland-Bukit-Timah-Singapore.jpg",
+  "https://sg1-cdn.pgimgs.com/listing/24638334/UPHO.143265759.V800/One-Draycott-Tanglin-Holland-Bukit-Timah-Singapore.jpg"
+]
+
+# Attach photos using a loop
+photo_urls.each do |url|
+  file = URI.open(url)
+  house_4.photos.attach(io: file, filename: "house_#{house_4.id}_photo#{photo_urls.index(url) + 1}.jpg", content_type: "image/jpeg")
+end
+
+puts "Created house 4 with multiple photos"
 
 Offer.create!(
   user_id: user_bob.id,
@@ -247,11 +284,19 @@ house_5 = House.create!(
   tenure: "999-year",
   region: "Central Singapore Community Development Council"
 )
-# Import seed house images (first 6 only)
-file = URI.open("https://www.discoverasr.com/content/dam/tal/media/images/properties/singapore/singapore/citadines-raffles-place-singapore/overview/citadines-raffles-place-singapore-living-rm-750x600.jpg.transform/ascott-lowres/image.jpg")
-house_5.photos.attach(io: file, filename: "house5.png", content_type: "image/png")
-house_5.save
-puts "Created house 5"
+photo_urls = [
+  "https://sg1-cdn.pgimgs.com/listing/24616122/UPHO.143007868.V800/The-Tre-Ver-Macpherson-Potong-Pasir-Singapore.jpg",
+  "https://sg1-cdn.pgimgs.com/listing/24616122/UPHO.143007869.V800/The-Tre-Ver-Macpherson-Potong-Pasir-Singapore.jpg",
+  "https://sg1-cdn.pgimgs.com/listing/24616122/UPHO.143007872.V800/The-Tre-Ver-Macpherson-Potong-Pasir-Singapore.jpg"
+]
+
+# Attach photos using a loop
+photo_urls.each do |url|
+  file = URI.open(url)
+  house_5.photos.attach(io: file, filename: "house_#{house_5.id}_photo#{photo_urls.index(url) + 1}.jpg", content_type: "image/jpeg")
+end
+
+puts "Created house 5 with multiple photos"
 
 Offer.create!(
   user_id: user_bob.id,
@@ -279,11 +324,19 @@ house_6 = House.create!(
   tenure: "99-year",
   region: "Central Singapore Community Development Council"
 )
-# Import seed house images
-file = URI.open("https://www.retalkasia.com/sites/default/files/styles/article-full/public/imagereader_5_24.jpg?itok=6Af7E8CN")
-house_6.photos.attach(io: file, filename: "house6.png", content_type: "image/png")
-house_6.save
-puts "Created house 6"
+photo_urls = [
+  "https://sg1-cdn.pgimgs.com/listing/24647400/UPHO.143373730.V800/Coco-Palms-Pasir-Ris-Tampines-Singapore.jpg",
+  "https://sg1-cdn.pgimgs.com/listing/24647400/UPHO.143373721.V800/Coco-Palms-Pasir-Ris-Tampines-Singapore.jpg",
+  "https://sg1-cdn.pgimgs.com/listing/24647400/UPHO.143373719.V800/Coco-Palms-Pasir-Ris-Tampines-Singapore.jpg"
+]
+
+# Attach photos using a loop
+photo_urls.each do |url|
+  file = URI.open(url)
+  house_6.photos.attach(io: file, filename: "house_#{house_6.id}_photo#{photo_urls.index(url) + 1}.jpg", content_type: "image/jpeg")
+end
+
+puts "Created house 6 with multiple photos"
 
 Offer.create!(
   user_id: user_bob.id,
@@ -311,11 +364,19 @@ house_7 = House.create!(
   tenure: "999-year",
   region: "North East Community Development Council"
 )
-# Import seed house images
-file = URI.open("https://d1hy6t2xeg0mdl.cloudfront.net/image/1834/9741cd6fa8/standard-nofill")
-house_7.photos.attach(io: file, filename: "house7.png", content_type: "image/png")
-house_7.save
-puts "Created house 7"
+photo_urls = [
+  "https://sg1-cdn.pgimgs.com/listing/24666981/UPHO.143599024.V800/Sims-Urban-Oasis-Eunos-Geylang-Paya-Lebar-Singapore.jpg",
+  "https://sg1-cdn.pgimgs.com/listing/24666981/UPHO.143599014.V800/Sims-Urban-Oasis-Eunos-Geylang-Paya-Lebar-Singapore.jpg",
+  "https://sg1-cdn.pgimgs.com/listing/24666981/UPHO.143599017.V800/Sims-Urban-Oasis-Eunos-Geylang-Paya-Lebar-Singapore.jpg"
+]
+
+# Attach photos using a loop
+photo_urls.each do |url|
+  file = URI.open(url)
+  house_7.photos.attach(io: file, filename: "house_#{house_7.id}_photo#{photo_urls.index(url) + 1}.jpg", content_type: "image/jpeg")
+end
+
+puts "Created house 7 with multiple photos"
 
 Offer.create!(
   user_id: user_bob.id,
@@ -343,11 +404,19 @@ house_8 = House.create!(
   tenure: "99-year",
   region: "North East Community Development Council"
 )
-# Import seed house images
-file = URI.open("https://sg1-cdn.pgimgs.com/listing/24520581/UPHO.141959898.V550/643-Yishun-Street-61-Sembawang-Yishun-Singapore.jpg")
-house_8.photos.attach(io: file, filename: "house8.png", content_type: "image/png")
-house_8.save
-puts "Created house 8"
+photo_urls = [
+  "https://sg1-cdn.pgimgs.com/listing/24545621/UPHO.142247804.V800/Penrose-Eunos-Geylang-Paya-Lebar-Singapore.jpg",
+  "https://sg1-cdn.pgimgs.com/listing/24545621/UPHO.142247810.V800/Penrose-Eunos-Geylang-Paya-Lebar-Singapore.jpg",
+  "https://sg1-cdn.pgimgs.com/listing/24545621/UPHO.142247811.V800/Penrose-Eunos-Geylang-Paya-Lebar-Singapore.jpg"
+]
+
+# Attach photos using a loop
+photo_urls.each do |url|
+  file = URI.open(url)
+  house_8.photos.attach(io: file, filename: "house_#{house_8.id}_photo#{photo_urls.index(url) + 1}.jpg", content_type: "image/jpeg")
+end
+
+puts "Created house 8 with multiple photos"
 
 Offer.create!(
   user_id: user_bob.id,
@@ -375,11 +444,19 @@ house_9 = House.create!(
   tenure: "999-year",
   region: "Central Singapore Community Development Council"
 )
-# Import seed house images
-file = URI.open("https://sg1-cdn.pgimgs.com/listing/23779849/UPHO.134849182.V550/135-Bishan-Street-12-Ang-Mo-Kio-Bishan-Thomson-Singapore.jpg")
-house_9.photos.attach(io: file, filename: "house8.png", content_type: "image/png")
-house_9.save
-puts "Created house 9"
+photo_urls = [
+  "https://sg1-cdn.pgimgs.com/listing/24641495/UPHO.143302170.V800/Watten-House-Newton-Novena-Singapore.jpg",
+  "https://sg1-cdn.pgimgs.com/listing/24641495/UPHO.143302167.V800/Watten-House-Newton-Novena-Singapore.jpg",
+  "https://sg1-cdn.pgimgs.com/listing/24641495/UPHO.143302168.V800/Watten-House-Newton-Novena-Singapore.jpg"
+]
+
+# Attach photos using a loop
+photo_urls.each do |url|
+  file = URI.open(url)
+  house_9.photos.attach(io: file, filename: "house_#{house_9.id}_photo#{photo_urls.index(url) + 1}.jpg", content_type: "image/jpeg")
+end
+
+puts "Created house 9 with multiple photos"
 
 Offer.create!(
   user_id: user_bob.id,
@@ -407,10 +484,19 @@ house_10 = House.create!(
   tenure: "freehold",
   region: "South West Community Development Council"
 )
-file = URI.open("https://sg1-cdn.pgimgs.com/listing/24534214/UPHO.142117643.V550/694D-Woodlands-Drive-62-Admiralty-Woodlands-Singapore.jpg")
-house_10.photos.attach(io: file, filename: "house8.png", content_type: "image/png")
-house_10.save
-puts "Created house 10"
+photo_urls = [
+  "https://sg1-cdn.pgimgs.com/listing/24660803/UPHO.143531173.V800/Parc-Komo-Changi-Airport-Changi-Village-Singapore.jpg",
+  "https://sg1-cdn.pgimgs.com/listing/24660803/UPHO.143531178.V800/Parc-Komo-Changi-Airport-Changi-Village-Singapore.jpg",
+  "https://sg1-cdn.pgimgs.com/listing/24660803/UPHO.143531179.V800/Parc-Komo-Changi-Airport-Changi-Village-Singapore.jpg"
+]
+
+# Attach photos using a loop
+photo_urls.each do |url|
+  file = URI.open(url)
+  house_10.photos.attach(io: file, filename: "house_#{house_10.id}_photo#{photo_urls.index(url) + 1}.jpg", content_type: "image/jpeg")
+end
+
+puts "Created house 10 with multiple photos"
 
 Offer.create!(
   user_id: user_bob.id,
