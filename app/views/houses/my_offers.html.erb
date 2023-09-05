@@ -13,8 +13,8 @@
       <% @user_offers.group_by(&:house).each do |house, offers| %>
         <div class="col-md-4 mb-4"> <!-- Each card takes 4 columns on medium-sized screens -->
           <div class="card" style="width: 21rem;">
-            <% if house.photo.attached? %>
-              <%= image_tag(cl_image_path house.photo.key, width: 400, height: 300, crop: :fill) %>
+            <% if house.photos.attached? %>
+              <%= image_tag(cl_image_path house.photos.first.key, width: 400, height: 300, crop: :fill) %>
             <% end %>
             <div class="card-body">
               <h5 class="card-title"><%= house.address %></h5>
