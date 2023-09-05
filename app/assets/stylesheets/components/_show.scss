@@ -1,0 +1,27 @@
+.house-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.house-info-section {
+  flex: 1; /* Each section takes equal width */
+  padding: 10px; /* Add padding for spacing within sections */
+  border: 1px solid #ddd; /* Add a border for visual separation */
+  background-color: #f9f9f9; /* Add background color for contrast */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
+}
+
+.house-info-section p {
+  margin: 0; /* Reset default margin for paragraphs inside sections */
+}
+
+.price {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.price-per-sqft {
+  font-size: 16px;
+  margin-top: 5px; /* Add some spacing between price and price-per-sqft */
+}

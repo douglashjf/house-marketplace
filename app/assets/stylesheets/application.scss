@@ -11,10 +11,3 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
-
-// general styling
-input.greyed-out {
-  background-color: #f1f1f1; /* Grey background */
-  color: #999; /* Grey text color */
-  cursor: not-allowed; /* Show "not-allowed" cursor on hover */
-  }
