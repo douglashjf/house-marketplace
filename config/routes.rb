@@ -8,7 +8,12 @@ Rails.application.routes.draw do
     member do
       post :toggle_favourites
     end
-    resources :offers, only: %i[index create update]
+    resources :offers, only: %i[index create update] do
+      member do
+        post :accept
+        post :decline
+      end
+    end
     collection do
       get 'my_listings'
       get 'my_offers'

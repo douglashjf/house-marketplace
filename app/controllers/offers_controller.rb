@@ -26,12 +26,18 @@ class OffersController < ApplicationController
   # end
 
   def update
-    authorize @house
+
     @offer = Offer.find(params[:id])
-    if @offer.update(offer_params)
-      redirect_to house_path(@house)
-    else
-      render 'house/show', status: :unprocessable_entity
+
+    authorize @offer
+    respond_to do |format|
+      if @offer.update(offer_params)
+        format.html { redirect_to house_path(@house) }
+        format.json
+      else
+        format.html { render 'house/show', status: :unprocessable_entity }
+        format.json
+      end
     end
   end
 
@@ -41,6 +47,46 @@ class OffersController < ApplicationController
     authorize @offer
     @offer.destroy
     redirect_to house_path(@offer.house), status: :see_other
+  end
+
+  def accept
+    offer = Offer.find(params[:id])
+    authorize offer
+
+    offer.status = "Accepted"
+
+    if offer.save
+      @offer = Offer.new
+      @house = offer.house
+      @markers = [
+        {
+          lat: @house.latitude,
+          lng: @house.longitude
+        }]
+      render "houses/show", :layout => false
+    else
+      puts offer.errors.full_messages
+    end
+  end
+
+  def decline
+    offer = Offer.find(params[:id])
+    authorize offer
+
+    offer.status = "Declined"
+
+    if offer.save
+      @offer = Offer.new
+      @house = offer.house
+      @markers = [
+        {
+          lat: @house.latitude,
+          lng: @house.longitude
+        }]
+      render "houses/show", :layout => false
+    else
+      puts offer.errors.full_messages
+    end
   end
 
   private
