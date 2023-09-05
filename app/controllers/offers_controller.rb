@@ -26,9 +26,10 @@ class OffersController < ApplicationController
   # end
 
   def update
-    authorize @house
+
     @offer = Offer.find(params[:id])
 
+    authorize @offer
     respond_to do |format|
       if @offer.update(offer_params)
         format.html { redirect_to house_path(@house) }
@@ -52,11 +53,17 @@ class OffersController < ApplicationController
     offer = Offer.find(params[:id])
     authorize offer
 
-    offer.status = "accepted"
+    offer.status = "Accepted"
 
     if offer.save
-      puts "updated"
-      render json: { status: "success" }, status: 200
+      @offer = Offer.new
+      @house = offer.house
+      @markers = [
+        {
+          lat: @house.latitude,
+          lng: @house.longitude
+        }]
+      render "houses/show", :layout => false
     else
       puts offer.errors.full_messages
     end
@@ -66,11 +73,17 @@ class OffersController < ApplicationController
     offer = Offer.find(params[:id])
     authorize offer
 
-    offer.status = "declined"
+    offer.status = "Declined"
 
     if offer.save
-      puts "updated"
-      render json: { status: "success" }, status: 200
+      @offer = Offer.new
+      @house = offer.house
+      @markers = [
+        {
+          lat: @house.latitude,
+          lng: @house.longitude
+        }]
+      render "houses/show", :layout => false
     else
       puts offer.errors.full_messages
     end

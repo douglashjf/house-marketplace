@@ -15,8 +15,8 @@ class HousePolicy < ApplicationPolicy
   end
 
   def update?
-    record_has_user_offer = record.offers.any? { |offer| offer.user == user }
-    record.user == user || record_has_user_offer
+    # record_has_user_offer = record.offers.any? { |offer| offer.user == user }
+    record.user == user
   end
 
   # offer policy
@@ -26,8 +26,8 @@ class HousePolicy < ApplicationPolicy
   # end
 
   def destroy?
-    record_has_user_offer = record.offers.any? { |offer| offer.user == user }
-    record.user == user || record_has_user_offer
+    # record_has_user_offer = record.offers.any? { |offer| offer.user == user }
+    record.user == user
   end
 
   def toggle_favourites?

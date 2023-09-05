@@ -6,6 +6,11 @@ class OfferPolicy < ApplicationPolicy
     end
   end
 
+  def update?
+    owner_of_record_house = record.house.user == user
+    record.user == user || owner_of_record_house
+  end
+
   def destroy?
     owner_of_record_house = record.house.user == user
     record.user == user || owner_of_record_house

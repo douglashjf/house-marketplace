@@ -14,21 +14,16 @@ export default class extends Controller {
     event.preventDefault();
     console.log("THIS TRIGGERS")
     console.log(this.acceptTarget.action)
+    console.log(event.currentTarget);
     const formElement = this.acceptTarget.parentElement;
     fetch(formElement.action, {
       method: "POST",
-      headers: { "Accept": "application/json",
-      "X-CSRF-Token": document.head.querySelector(`meta[name="csrf-token"]`).getAttribute("content"),
-     },
-      body: {}
+      headers: {},
+      body: new FormData(formElement)
     })
-      .then(response => response.json())
+      .then(response => response.text())
       .then((data) => {
-        console.log(data)
-        if (data.status === "success") {
-          this.statusTarget.innerHTML = "accepted"
-        }
-        this.acceptTarget.innerHTML = "OK"
+        document.querySelector("#content").innerHTML = data;
       })
   }
 
@@ -37,18 +32,12 @@ export default class extends Controller {
     const formElement = this.declineTarget.parentElement;
     fetch(formElement.action, {
       method: "POST",
-      headers: { "Accept": "application/json",
-      "X-CSRF-Token": document.head.querySelector(`meta[name="csrf-token"]`).getAttribute("content"),
-     },
-      body: {}
+      headers: {},
+      body: new FormData(formElement)
     })
-      .then(response => response.json())
+      .then(response => response.text())
       .then((data) => {
-        console.log(data)
-        if (data.status === "success") {
-          this.statusTarget.innerHTML = "declined"
-        }
-        this.declineTarget.innerHTML = "OK"
+        document.querySelector("#content").innerHTML = data;
       })
   }
 }
