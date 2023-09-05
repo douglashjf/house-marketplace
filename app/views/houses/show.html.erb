@@ -4,7 +4,7 @@
       <h1><%= @house.address %></h1>
       <p>Listed By: <%= @house.user[:first_name] %></p>
       <% if current_user == @house.user %>
-        <p class="text-danger">You are the lister of this house</p>
+        <p class="text-success">You are the lister of this house</p>
       <% end %>
 
       <div>
