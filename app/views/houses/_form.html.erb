@@ -1,5 +1,5 @@
 <%= simple_form_for(@house) do |f| %>
-    <%= f.input :photo, as: :file %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.input :address,
         # address autocomplete
         input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},

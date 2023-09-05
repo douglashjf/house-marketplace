@@ -4,12 +4,48 @@
       <h1><%= @house.address %></h1>
       <p>Listed By: <%= @house.user[:first_name] %></p>
 
-      <% if @house.photo.attached? %>
-        <%= image_tag(cl_image_path @house.photo.key, width: 745, crop: :fill, class: "img-fluid rounded w-100") %>
+      <% if current_user == @house.user %>
+        <p class="text-success">You are the lister of this house</p>
       <% end %>
 
+      <div>
+        <%= link_to '< All houses', houses_path, class: "btn btn-secondary m-3" %>
+        <%= link_to 'Edit', edit_house_path(@house), class: "btn btn-info m-3" if policy(@house).edit? %>
+        <%= link_to 'Delete', house_path(@house), class: "btn btn-danger m-3", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if policy(@house).destroy? %>
+      </div>
+      <hr>
 
-        <%# Geocoding %>
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <% @house.photos.each_with_index do |photo, index| %>
+            <div class="carousel-item <%= 'active' if index == 0 %>">
+              <%= cl_image_tag photo.key, class: "d-block w-100 img-fluid rounded" %>
+            </div>
+          <% end %>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <div>
+        <p>Region: <%= @house.region %></p>
+        <p>Minimum Ask Price: <%= number_to_currency(@house.price) %></p>
+        <p>Bedrooms: <%= @house.bedroom %></p>
+        <p>Bathrooms: <%= @house.bathroom %></p>
+        <p>Size in sqft: <%= @house.square_feet %> sqft</p>
+        <p>Price per sqft: <%= number_to_currency((@house.price.to_f / @house.square_feet).round(2)) %> psf</p>
+        <p>Description: <%= @house.description %></p>
+        <p>Type: <%= @house.property_type %></p>
+        <p>Tenure: <%= @house.tenure %></p>
+      </div>
+
+      <%# Geocoding %>
       <div data-controller="map"
         id='map'
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
@@ -17,21 +53,11 @@
         style="width: 100%; height: 600px;"
         class = "mt-3 mb-2"></div>
 
-      <p>Region: <%= @house.region %></p>
-      <p>Minimum Ask Price: <%= number_to_currency(@house.price) %></p>
-      <p>Bedrooms: <%= @house.bedroom %></p>
-      <p>Bathrooms: <%= @house.bathroom %></p>
-      <p>Size in sqft: <%= @house.square_feet %> sqft</p>
-      <p>Price per sqft: <%= number_to_currency((@house.price.to_f / @house.square_feet).round(2)) %> psf</p>
-      <p>Description: <%= @house.description %></p>
-      <p>Type: <%= @house.property_type %></p>
-      <p>Tenure: <%= @house.tenure %></p>
-
     </div>
 
     <div class="col-md-5" data-controller='favouritesbtn'>
       <div class="text-end" data-favouritesbtn-target="flashMessageContainer"></div>
-      <div class="d-flex justify-content-end mb-3", >
+      <div class="d-flex justify-content-end mb-3" >
         <% if current_user != @house.user%>
           <% if user_signed_in? %>
             <% if current_user.favourites.exists? %>
@@ -46,7 +72,6 @@
       </div>
 
   <hr>
-
 
       <div class="sticky-top">
         <h2>Current Offers</h2>
@@ -107,9 +132,6 @@
       </div>
     </div>
   </div>
-
-  <%= link_to '< All houses', houses_path %>  <%= link_to 'Edit', edit_house_path(@house) if policy(@house).edit? %>
-  <%= link_to 'Delete', house_path(@house), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if policy(@house).destroy? %>
 
 </div>
 
