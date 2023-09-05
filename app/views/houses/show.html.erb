@@ -7,13 +7,29 @@
     <div>
       <%= link_to '< All houses', houses_path, class: "btn btn-secondary m-3" %>
       <%= link_to 'Edit', edit_house_path(@house), class: "btn btn-info m-3" if policy(@house).edit? %>
-      <%= link_to 'delete', house_path(@house), class: "btn btn-danger m-3", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if policy(@house).destroy? %>
+      <%= link_to 'Delete', house_path(@house), class: "btn btn-danger m-3", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if policy(@house).destroy? %>
     </div>
     <hr>
 
-      <% if @house.photo.attached? %>
-        <%= image_tag(cl_image_path @house.photo.key, width: 800, height: 600, crop: :fill, class: "img-fluid rounded") %>
-      <% end %>
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <% @house.photos.each_with_index do |photo, index| %>
+          <div class="carousel-item <%= 'active' if index == 0 %>">
+            <%= cl_image_tag photo.key, class: "d-block w-100 img-fluid rounded" %>
+          </div>
+        <% end %>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <div>
       <p>Region: <%= @house.region %></p>
       <p>Minimum Ask Price: <%= number_to_currency(@house.price) %></p>
       <p>Bedrooms: <%= @house.bedroom %></p>
@@ -23,7 +39,7 @@
       <p>Description: <%= @house.description %></p>
       <p>Type: <%= @house.property_type %></p>
       <p>Tenure: <%= @house.tenure %></p>
-
+    </div>
       <%# Geocoding %>
       <div data-controller="map"
         id='map'

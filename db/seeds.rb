@@ -92,10 +92,9 @@ house_1 = House.create!(
   region: "North East Community Development Council"
 )
 # Import seed house images (first 6 only)
-house = House.last
 file = URI.open("https://auctionjiacontent.s3.amazonaws.com/osproperty/properties/193/medium/1931598585858401-Serangoon-Ave-1-Living-Room.jpg")
-house.photo.attach(io: file, filename: "house1.png", content_type: "image/png")
-house.save
+house_1.photos.attach(io: file, filename: "house1.png", content_type: "image/png")
+house_1.save
 puts "Created house 1"
 
 Offer.create!(
@@ -132,10 +131,9 @@ house_2 = House.create!(
   region: "Central Singapore Community Development Council"
 )
 # Import seed house images (first 6 only)
-house = House.last
 file = URI.open("https://s3-ap-southeast-1.amazonaws.com/static.streetsine/Listing%20Photos/Circle/97462521/L/374066951_mobile.jpg?20220908222907")
-house.photo.attach(io: file, filename: "house2.png", content_type: "image/png")
-house.save
+house_2.photos.attach(io: file, filename: "house2.png", content_type: "image/png")
+house_2.save
 puts "Created house 2"
 
 Offer.create!(
@@ -172,10 +170,9 @@ house_3 = House.create!(
   region: "Central Singapore Community Development Council"
 )
 # Import seed house images (first 6 only)
-house = House.last
 file = URI.open("https://alanweeproperty.com/wp-content/uploads/2022/08/301-Ang-Mo-Kio-Ave-3-Jumbo-Flat-Living-Room.jpg")
-house.photo.attach(io: file, filename: "house3.png", content_type: "image/png")
-house.save
+house_3.photos.attach(io: file, filename: "house3.png", content_type: "image/png")
+house_3.save
 puts "Created house 3"
 
 Offer.create!(
@@ -219,10 +216,9 @@ house_4 = House.create!(
   region: "Central Singapore Community Development Council"
 )
 # Import seed house cover images (first 6 only)
-house = House.last
 file = URI.open("https://sg1-cdn.pgimgs.com/listing/24493503/UPHO.143170962.V550/Cairnhill-Residences-Orchard-River-Valley-Singapore.jpg")
-house.photo.attach(io: file, filename: "house4.png", content_type: "image/png")
-house.save
+house_4.photos.attach(io: file, filename: "house4.png", content_type: "image/png")
+house_4.save
 puts "Created house 4"
 
 Offer.create!(
@@ -252,10 +248,9 @@ house_5 = House.create!(
   region: "Central Singapore Community Development Council"
 )
 # Import seed house images (first 6 only)
-house = House.last
 file = URI.open("https://www.discoverasr.com/content/dam/tal/media/images/properties/singapore/singapore/citadines-raffles-place-singapore/overview/citadines-raffles-place-singapore-living-rm-750x600.jpg.transform/ascott-lowres/image.jpg")
-house.photo.attach(io: file, filename: "house5.png", content_type: "image/png")
-house.save
+house_5.photos.attach(io: file, filename: "house5.png", content_type: "image/png")
+house_5.save
 puts "Created house 5"
 
 Offer.create!(
@@ -285,10 +280,9 @@ house_6 = House.create!(
   region: "Central Singapore Community Development Council"
 )
 # Import seed house images
-house = House.last
 file = URI.open("https://www.retalkasia.com/sites/default/files/styles/article-full/public/imagereader_5_24.jpg?itok=6Af7E8CN")
-house.photo.attach(io: file, filename: "house6.png", content_type: "image/png")
-house.save
+house_6.photos.attach(io: file, filename: "house6.png", content_type: "image/png")
+house_6.save
 puts "Created house 6"
 
 Offer.create!(
@@ -318,10 +312,9 @@ house_7 = House.create!(
   region: "North East Community Development Council"
 )
 # Import seed house images
-house = House.last
 file = URI.open("https://d1hy6t2xeg0mdl.cloudfront.net/image/1834/9741cd6fa8/standard-nofill")
-house.photo.attach(io: file, filename: "house7.png", content_type: "image/png")
-house.save
+house_7.photos.attach(io: file, filename: "house7.png", content_type: "image/png")
+house_7.save
 puts "Created house 7"
 
 Offer.create!(
@@ -351,10 +344,9 @@ house_8 = House.create!(
   region: "North East Community Development Council"
 )
 # Import seed house images
-house = House.last
 file = URI.open("https://sg1-cdn.pgimgs.com/listing/24520581/UPHO.141959898.V550/643-Yishun-Street-61-Sembawang-Yishun-Singapore.jpg")
-house.photo.attach(io: file, filename: "house8.png", content_type: "image/png")
-house.save
+house_8.photos.attach(io: file, filename: "house8.png", content_type: "image/png")
+house_8.save
 puts "Created house 8"
 
 Offer.create!(
@@ -384,10 +376,9 @@ house_9 = House.create!(
   region: "Central Singapore Community Development Council"
 )
 # Import seed house images
-house = House.last
 file = URI.open("https://sg1-cdn.pgimgs.com/listing/23779849/UPHO.134849182.V550/135-Bishan-Street-12-Ang-Mo-Kio-Bishan-Thomson-Singapore.jpg")
-house.photo.attach(io: file, filename: "house8.png", content_type: "image/png")
-house.save
+house_9.photos.attach(io: file, filename: "house8.png", content_type: "image/png")
+house_9.save
 puts "Created house 9"
 
 Offer.create!(
@@ -416,10 +407,9 @@ house_10 = House.create!(
   tenure: "freehold",
   region: "South West Community Development Council"
 )
-house = House.last
 file = URI.open("https://sg1-cdn.pgimgs.com/listing/24534214/UPHO.142117643.V550/694D-Woodlands-Drive-62-Admiralty-Woodlands-Singapore.jpg")
-house.photo.attach(io: file, filename: "house8.png", content_type: "image/png")
-house.save
+house_10.photos.attach(io: file, filename: "house8.png", content_type: "image/png")
+house_10.save
 puts "Created house 10"
 
 Offer.create!(
