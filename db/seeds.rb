@@ -110,21 +110,21 @@ Offer.create!(
   user_id: user_doug.id,
   house_id: house_1.id,
   price: 700000,
-  status: "pending"
+  status: "Pending"
 )
 
 Offer.create!(
   user_id: user_alex.id,
   house_id: house_1.id,
   price: 720000,
-  status: "pending"
+  status: "Pending"
 )
 
 Offer.create!(
   user_id: user_yc.id,
   house_id: house_1.id,
   price: 750000,
-  status: "pending"
+  status: "Pending"
 )
 
 house_2 = House.create!(
@@ -159,21 +159,21 @@ Offer.create!(
   user_id: user_bob.id,
   house_id: house_2.id,
   price: 750000,
-  status: "pending"
+  status: "Pending"
 )
 
 Offer.create!(
   user_id: user_alex.id,
   house_id: house_2.id,
   price: 800000,
-  status: "pending"
+  status: "Pending"
 )
 
 Offer.create!(
   user_id: user_doug.id,
   house_id: house_2.id,
   price: 730000,
-  status: "pending"
+  status: "Pending"
 )
 
 house_3 = House.create!(
@@ -207,28 +207,28 @@ Offer.create!(
   user_id: user_bob.id,
   house_id: house_3.id,
   price: 854100,
-  status: "pending"
+  status: "Pending"
 )
 
 Offer.create!(
   user_id: user_alex.id,
   house_id: house_3.id,
   price: 900000,
-  status: "pending"
+  status: "Pending"
 )
 
 Offer.create!(
   user_id: user_yc.id,
   house_id: house_3.id,
   price: 910000,
-  status: "pending"
+  status: "Pending"
 )
 
 Offer.create!(
   user_id: user_doug.id,
   house_id: house_3.id,
   price: 1000000,
-  status: "pending"
+  status: "Pending"
 )
 
 house_4 = House.create!(
@@ -262,14 +262,14 @@ Offer.create!(
   user_id: user_bob.id,
   house_id: house_4.id,
   price: 4000010,
-  status: "pending"
+  status: "Pending"
 )
 
 Offer.create!(
   user_id: user_alex.id,
   house_id: house_4.id,
   price: 4050000,
-  status: "pending"
+  status: "Pending"
 )
 
 house_5 = House.create!(
@@ -302,14 +302,14 @@ Offer.create!(
   user_id: user_bob.id,
   house_id: house_5.id,
   price: 10000010,
-  status: "pending"
+  status: "Pending"
 )
 
 Offer.create!(
   user_id: user_alex.id,
   house_id: house_5.id,
   price: 11000000,
-  status: "pending"
+  status: "Pending"
 )
 
 house_6 = House.create!(
@@ -342,14 +342,14 @@ Offer.create!(
   user_id: user_bob.id,
   house_id: house_6.id,
   price: 10000010,
-  status: "pending"
+  status: "Pending"
 )
 
 Offer.create!(
   user_id: user_alex.id,
   house_id: house_6.id,
   price: 11000000,
-  status: "pending"
+  status: "Pending"
 )
 
 house_7 = House.create!(
@@ -382,14 +382,14 @@ Offer.create!(
   user_id: user_bob.id,
   house_id: house_7.id,
   price: 1000010,
-  status: "pending"
+  status: "Pending"
 )
 
 Offer.create!(
   user_id: user_alex.id,
   house_id: house_7.id,
   price: 1100000,
-  status: "pending"
+  status: "Pending"
 )
 
 house_8 = House.create!(
@@ -422,14 +422,14 @@ Offer.create!(
   user_id: user_bob.id,
   house_id: house_8.id,
   price: 500000,
-  status: "pending"
+  status: "Pending"
 )
 
 Offer.create!(
   user_id: user_alex.id,
   house_id: house_8.id,
   price: 600000,
-  status: "pending"
+  status: "Pending"
 )
 
 house_9 = House.create!(
@@ -462,14 +462,14 @@ Offer.create!(
   user_id: user_bob.id,
   house_id: house_9.id,
   price: 10000010,
-  status: "pending"
+  status: "Pending"
 )
 
 Offer.create!(
   user_id: user_alex.id,
   house_id: house_9.id,
   price: 11000000,
-  status: "pending"
+  status: "Pending"
 )
 
 house_10 = House.create!(
@@ -502,14 +502,14 @@ Offer.create!(
   user_id: user_bob.id,
   house_id: house_10.id,
   price: 1000010,
-  status: "pending"
+  status: "Pending"
 )
 
 Offer.create!(
   user_id: user_alex.id,
   house_id: house_10.id,
   price: 1100000,
-  status: "pending"
+  status: "Pending"
 )
 
 # j = 1
@@ -518,7 +518,7 @@ Offer.create!(
 #     user_id: User.all.sample.id,
 #     house_id: House.all.sample.id,
 #     price: 10000000,
-#     status: "pending"
+#     status: "Pending"
 #   )
 #   puts "Created offer #{j}"
 #   j += 1
