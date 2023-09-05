@@ -22,7 +22,7 @@ class House < ApplicationRecord
   validates :price, :square_feet, numericality: { only_integer: true, greater_than: 0 }
   has_many :offers, dependent: :destroy
   # cloudinary images
-  has_one_attached :photo
+  has_many_attached :photos
   # favourites feature
   has_many :favourites, dependent: :destroy
   # geocoder

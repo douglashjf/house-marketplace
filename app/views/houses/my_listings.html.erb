@@ -21,8 +21,8 @@
       <% @user_houses.each do |house| %>
         <div class="col-md-3 mb-4">
           <div class="card h-100" style="width: 19rem;">
-            <% if house.photo.attached? %>
-              <%= image_tag(cl_image_path house.photo.key, width: 400, height: 300, crop: :fill) %>
+            <% if house.photos.attached? %>
+              <%= image_tag(cl_image_path house.photos.first.key, width: 400, height: 300, crop: :fill) %>
             <% end %>
             <div class="card-body d-flex flex-column">
               <h5 class="card-title"><%= house.address %></h5>

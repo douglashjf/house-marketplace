@@ -10,11 +10,12 @@ export default class extends Controller {
   toggle() {
     this.favouritesTarget.classList.toggle('is-favourites');
     const flashAddMessage = document.createElement('div');
-    flashAddMessage.className = 'flash-add-message';
-    flashAddMessage.textContent = 'Page added to favourites';
+    flashAddMessage.className = 'flash-message';
+    flashAddMessage.textContent = 'Page added to Favourites';
     const flashRemMessage = document.createElement('div');
-    flashRemMessage.className = 'flash-rem-message';
-    flashRemMessage.textContent = 'Page removed from favourites';
+    flashRemMessage.className = 'flash-message';
+    flashRemMessage.textContent = 'Page removed from Favourites';
+
     if (this.favouritesTarget.innerText === '➕ Add to Favourites') {
       this.favouritesTarget.innerText = '➖ Remove from Favourites';
       this.flashMessageContainerTarget.appendChild(flashAddMessage);
