@@ -1,0 +1,9 @@
+/* Hide spinners for form inputs with the class 'no-spinners' */
+.no-spinners {
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
+}

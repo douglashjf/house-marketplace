@@ -7,10 +7,10 @@
     %>
     <!-- Hidden input for region which gets autofilled -->
     <%= f.input :region, input_html: { value: @extracted_region_name, readonly: true, class: 'greyed-out' } %>
-    <%= f.input :price, placeholder: "Price" %>
+    <%= f.input :price, as: :text, placeholder: "Price" %>
     <%= f.input :bedroom, placeholder: "bedroom" , collection: House::BEDROOM %>
     <%= f.input :bathroom, placeholder: "bathroom" , collection: House::BATHROOM %>
-    <%= f.input :square_feet, placeholder: "square feet?" %>
+    <%= f.input :square_feet, as: :text, placeholder: "square feet?" %>
     <%= f.input :description, placeholder: "describe this place" %>
     <%= f.input :property_type, placeholder: "property type", collection: House::PROPERTY_TYPE %>
     <%= f.input :tenure, placeholder: "how many years tenure", collection: House::TENURE_CAT  %>

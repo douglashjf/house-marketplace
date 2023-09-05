@@ -106,7 +106,7 @@
                         </div>
                         <div class="modal-body">
                           <%= simple_form_for [@house, offer] do |f| %>
-                            <%= f.input :price, error: offer.errors[:price], class: "form-control" %>
+                            <%= f.input :price, error: offer.errors[:price], class: "form-control no-spinners" %>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
