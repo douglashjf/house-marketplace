@@ -4,6 +4,13 @@
       <h1><%= @house.address %></h1>
       <p>Listed By: <%= @house.user[:first_name] %></p>
 
+    <div>
+      <%= link_to '< All houses', houses_path, class: "btn btn-secondary m-3" %>
+      <%= link_to 'Edit', edit_house_path(@house), class: "btn btn-info m-3" if policy(@house).edit? %>
+      <%= link_to 'delete', house_path(@house), class: "btn btn-danger m-3", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if policy(@house).destroy? %>
+    </div>
+    <hr>
+
       <% if @house.photo.attached? %>
         <%= image_tag(cl_image_path @house.photo.key, width: 800, height: 600, crop: :fill, class: "img-fluid rounded") %>
       <% end %>
@@ -16,6 +23,13 @@
       <p>Description: <%= @house.description %></p>
       <p>Type: <%= @house.property_type %></p>
       <p>Tenure: <%= @house.tenure %></p>
+
+      <%# Geocoding %>
+      <div data-controller="map"
+        id='map'
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+        data-map-markers-value="<%= @markers.to_json %>"
+        style="width: 100%; height: 600px;"></div>
 
     </div>
 
@@ -36,12 +50,7 @@
       </div>
 
   <hr>
-  <%# Geocoding %>
-  <div data-controller="map"
-    id='map'
-    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-    data-map-markers-value="<%= @markers.to_json %>"
-    style="width: 100%; height: 600px;"></div>
+
 
       <div class="sticky-top">
         <h2>Current Offers</h2>
@@ -89,11 +98,6 @@
       </div>
     </div>
   </div>
-
-  <%= link_to '< All houses', houses_path %> | <%= link_to 'edit', edit_house_path(@house) if policy(@house).edit? %>
-  <%= link_to 'Edit', edit_house_path(@house), class: "btn btn-info" if policy(@house).edit? %>
-  <%= link_to 'delete', house_path(@house), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if policy(@house).destroy? %>
-
 </div>
 
 <% @house.offers.each_with_index do |offer, index| %>

@@ -340,7 +340,7 @@ Offer.create!(
 
 house_8 = House.create!(
   user_id: user_bob.id,
-  address: "Paris Ris",
+  address: "Tampines",
   price: 480000,
   bedroom: 2,
   bathroom: 1,
