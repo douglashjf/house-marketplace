@@ -82,7 +82,7 @@
         <% if current_user != @house.user && !house_has_offer_by_current_user && @house.offers.where(status: 'accepted').length < 1  %>
           <h2>Submit an Offer</h2>
           <%= simple_form_for [@house, @offer] do |f| %>
-            <%= f.input :price, error: @offer.errors[:price], class: "form-control" %>
+            <%= f.input :price, as: :text, error: @offer.errors[:price], class: "form-control" %>
             <%= f.submit "Submit Offer", class: "btn btn-primary" %>
           <% end %>
         <% end %>
