@@ -4,3 +4,16 @@
   border-width: 2px;
   border-color: #0D6EFD;
 }
+
+.flash-message {
+padding: 15px 20px;
+background-color: #fff5df;
+border-color: #feebc4;
+border-width: 2px;
+color:#9f7340;
+position: fixed;
+bottom: 16px;
+right: 16px;
+z-index: 1000;
+box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
