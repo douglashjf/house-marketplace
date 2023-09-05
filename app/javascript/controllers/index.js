@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import AcceptOffersController from "./accept_offers_controller"
+application.register("accept-offers", AcceptOffersController)
+
 import AddressAutocompleteController from "./address_autocomplete_controller"
 application.register("address-autocomplete", AddressAutocompleteController)
 

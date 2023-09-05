@@ -10,4 +10,12 @@ class OfferPolicy < ApplicationPolicy
     owner_of_record_house = record.house.user == user
     record.user == user || owner_of_record_house
   end
+
+  def accept?
+    true
+  end
+
+  def decline?
+    true
+  end
 end
