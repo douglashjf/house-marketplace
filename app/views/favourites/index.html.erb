@@ -16,8 +16,8 @@
         <% @favourites.each do |house| %>
           <div class="col-md-3 mb-4 col-6">
             <div class="card" style="width: 18rem;">
-              <% if House.find(house.house_id).photo.attached? %>
-                <%= image_tag(cl_image_path House.find(house.house_id).photo.key, width: 400, height: 300, crop: :fill) %>
+              <% if house.photos.attached? %>
+                <%= image_tag(cl_image_path house.photos.first.key, width: 400, height: 300, crop: :fill) %>
               <% end %>
               <div class="card-body">
                 <h5 class="card-title"><%= House.find(house.house_id).address %></h5>
