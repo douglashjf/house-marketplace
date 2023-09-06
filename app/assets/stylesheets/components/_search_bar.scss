@@ -44,10 +44,4 @@
     padding: 10px; /* Add padding to space the content from the edges */
     margin-top: -1px; /* Overlap with the search bar */
   }
-
-  .card card-body {
-    > *{
-      margin-bottom: 10px;
-    }
-  }
 }

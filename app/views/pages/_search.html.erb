@@ -1,77 +1,73 @@
-<div class="search-container">
-  <div class="input-group search-input-group">
-    <%= form_with url: houses_path, method: :get, class: "d-flex flex-grow-1" do |form| %>
-      <!-- Query input -->
+<div class="search-container d-flex">
+  <%= form_with url: houses_path, method: :get, class: "flex-grow-1" do |form| %>
+    <!-- Search bar input and button in one line -->
+    <div class="input-group search-input-group">
       <%= text_field_tag :query,
         params[:query],
-        class: "form-control",
+        class: "form-control p-2 flex-grow-1",
         placeholder: "Building or Address"
       %>
+      <%= button_tag(type: "submit", class: "btn search-button p-2") do %>
+        <i class="fa-solid fa-magnifying-glass"></i>
+      <% end %>
+    </div>
 
-      <!-- Search button (Magnifying Glass) -->
-      <div class="input-group-append">
-        <%= button_tag(type: "submit", class: "btn search-button") do %>
-          <i class="fa-solid fa-magnifying-glass"></i>
-        <% end %>
+    <!-- Advanced Search button -->
+    <div class="advanced-search-button-container mt-2">
+      <div class="d-flex justify-content-center">
+        <button class="btn advanced-search-button" type="button" data-bs-toggle="collapse" data-bs-target="#advancedSearchCollapse" aria-expanded="false" aria-controls="advancedSearchCollapse">
+          <i class="fa-solid fa-caret-down"></i>
+        </button>
       </div>
     </div>
 
-    <div class="advanced-search-container mt-2">
-      <div class="advanced-search-button-container d-flex justify-content-center">
-        <button class="btn advanced-search-button" type="button" data-bs-toggle="collapse" data-bs-target="#advancedSearchCollapse" aria-expanded="false" aria-controls="advancedSearchCollapse">
-            Advanced Search <i class="fa-solid fa-caret-down"></i>
-        </button>
-      </div>
+    <div class="collapse" id="advancedSearchCollapse">
+      <div class="card card-body">
+        <label for="min_price">Minimum Price:</label>
+        <%= number_field_tag :min_price %>
 
-      <div class="collapse" id="advancedSearchCollapse">
-        <div class="card card-body">
-          <label for="min_price">Minimum Price:</label>
-          <%= number_field_tag :min_price %>
+        <label for="max_price">Maximum Price:</label>
+        <%= number_field_tag :max_price %>
 
-          <label for="max_price">Maximum Price:</label>
-          <%= number_field_tag :max_price %>
+        <label for="region">Region:</label>
+        <%= select_tag :region, options_for_select(['North West', 'South West', 'Central', 'North East', 'North East'], params[:region]), include_blank: true %>
 
-          <label for="region">Region:</label>
-          <%= select_tag :region, options_for_select(['North West', 'South West', 'Central', 'North East', 'North East'], params[:region]), include_blank: true %>
+        <br>
+        <label for="Bedrooms">Bedrooms</label>
+        <div class="form-check">
+          <%= check_box_tag :bedrooms_1, 1, params[:bedrooms_1] %>
+          <label for="1 Bedroom">1 Bedroom</label>
+        </div>
 
-          <br>
-          <label for="Bedrooms">Bedrooms</label>
-          <div class="form-check">
-            <%= check_box_tag :bedrooms_1, 1, params[:bedrooms_1] %>
-            <label for="1 Bedroom">1 Bedroom</label>
-          </div>
+        <div class="form-check">
+          <%= check_box_tag :bedrooms_2, 1, params[:bedrooms_2] %>
+          <label for="2 Bedrooms">2 Bedrooms</label>
+        </div>
 
-          <div class="form-check">
-            <%= check_box_tag :bedrooms_2, 1, params[:bedrooms_2] %>
-            <label for="2 Bedrooms">2 Bedrooms</label>
-          </div>
+        <!-- Add form-check elements for bedrooms 3, 4, and 5 -->
+        <div class="form-check">
+          <%= check_box_tag :bedrooms_3, 1, params[:bedrooms_3] %>
+          <label for="3 Bedrooms">3 Bedrooms</label>
+        </div>
 
-          <!-- Add form-check elements for bedrooms 3, 4, and 5 -->
-          <div class="form-check">
-            <%= check_box_tag :bedrooms_3, 1, params[:bedrooms_3] %>
-            <label for="3 Bedrooms">3 Bedrooms</label>
-          </div>
+        <div class="form-check">
+          <%= check_box_tag :bedrooms_4, 1, params[:bedrooms_4] %>
+          <label for="4 Bedrooms">4 Bedrooms</label>
+        </div>
 
-          <div class="form-check">
-            <%= check_box_tag :bedrooms_4, 1, params[:bedrooms_4] %>
-            <label for="4 Bedrooms">4 Bedrooms</label>
-          </div>
+        <div class="form-check">
+          <%= check_box_tag :bedrooms_5, 1, params[:bedrooms_5] %>
+          <label for="5 Bedrooms">5 Bedrooms</label>
+        </div>
 
-          <div class="form-check">
-            <%= check_box_tag :bedrooms_5, 1, params[:bedrooms_5] %>
-            <label for="5 Bedrooms">5 Bedrooms</label>
-          </div>
+        <br>
 
-          <br>
-
-          <div class="input-group-append">
-            <%= button_tag(type: "submit", class: "btn btn-primary search-button") do %>
-              Apply Filters
-            <% end %>
-          </div>
+        <div class="input-group-append">
+          <%= button_tag(type: "submit", class: "btn btn-primary search-button") do %>
+            Apply Filters
+          <% end %>
         </div>
       </div>
     </div>
-    <% end %>
-  </div>
+  <% end %>
 </div>
