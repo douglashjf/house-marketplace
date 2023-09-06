@@ -1,0 +1,18 @@
+.carousel-inner {
+  /* Set the maximum height and width for the carousel */
+  max-height: 400px; /* Adjust the desired height */
+  max-width: 600px; /* Adjust the desired width */
+  margin: 0 auto; /* Center the carousel within its container */
+
+  /* Center the images within the frame and add background color (blank space) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-inner .carousel-item {
+  /* Ensure all items take up the full space of the frame */
+  flex: 1;
+  overflow: hidden;
+  background-color: #f5f5f5; /* Set the desired background color for blank space */
+}
