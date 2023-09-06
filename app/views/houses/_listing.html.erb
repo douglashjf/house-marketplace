@@ -10,7 +10,7 @@
           <h5 class="card-title"><%= house.address %></h5>
           <p class="card-text">Region: <%= house.region %></p>
           <p class="card-text"><strong>Minimum Ask Price:</strong> <%= number_to_currency(house.price, precision: 0) %></p>
-          <p class="card-text"><strong>Highest Offered Price: </strong><%= number_to_currency(house.offers.maximum(:price), precision: 0) %></p>
+          <p class="card-text">Highest Offered Price: <%= number_to_currency(house.offers.maximum(:price), precision: 0) %></p>
           <div class="d-flex justify-content-between mt-4">
             <div class="d-flex flex-column align-items-start">
               <p class="card-text">Size in sqft: <br><%= house.square_feet %>sqft</p>
