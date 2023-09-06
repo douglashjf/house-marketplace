@@ -19,7 +19,7 @@
         <div class="carousel-inner">
           <% @house.photos.each_with_index do |photo, index| %>
             <div class="carousel-item <%= 'active' if index == 0 %>">
-              <%= cl_image_tag photo.key, class: "d-block w-100 img-fluid rounded" %>
+              <%= cl_image_tag photo.key, class: "d-block w-100 img-fluid rounded carousel-inner-img"%>
             </div>
           <% end %>
         </div>
