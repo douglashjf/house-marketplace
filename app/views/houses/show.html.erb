@@ -35,7 +35,7 @@
 
       <div>
         <p>Region: <%= @house.region %></p>
-        <p>Minimum Ask Price: <%= number_to_currency(@house.price) %></p>
+        <p>Minimum Ask Price: <%= number_to_currency(@house.price, precision: 0) %></p>
         <p>Bedrooms: <%= @house.bedroom %></p>
         <p>Bathrooms: <%= @house.bathroom %></p>
         <p>Size in sqft: <%= @house.square_feet %> sqft</p>

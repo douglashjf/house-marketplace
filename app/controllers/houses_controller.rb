@@ -8,9 +8,39 @@ class HousesController < ApplicationController
     @houses = policy_scope(House)
 
     if params[:query].present?
-      @houses = policy_scope(House).search_by_address(params[:query])
+      @houses = @houses.search_by_address(params[:query])
     end
 
+    if params[:min_price].present?
+      @houses = @houses.where("price >= ?", params[:min_price])
+    end
+
+    if params[:max_price].present?
+      @houses = @houses.where("price <= ?", params[:max_price])
+    end
+
+    if params[:prop_type].present?
+      @houses = @houses.where(property_type: params[:prop_type])
+    end
+
+    # if params[:bedrm].present?
+    #   @houses = @houses.where(bedroom: params[:bedrm])
+    # end
+
+    if params[:region].present?
+      @houses = @houses.where("region ILIKE ?", "%#{params[:region]}%")
+    end
+
+    selected_bedrooms = []
+    selected_bedrooms << 1 if params[:bedrooms_1] == "1"
+    selected_bedrooms << 2 if params[:bedrooms_2] == "1"
+    selected_bedrooms << 3 if params[:bedrooms_3] == "1"
+    selected_bedrooms << 4 if params[:bedrooms_4] == "1"
+    selected_bedrooms << 5 if params[:bedrooms_5] == "1"
+
+    if selected_bedrooms.present?
+      @houses = @houses.where(bedroom: selected_bedrooms)
+    end
     # The `geocoded` scope filters only flats with coordinates
     @markers = @houses.geocoded.map do |house|
       {
