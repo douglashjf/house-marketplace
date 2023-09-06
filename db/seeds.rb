@@ -86,7 +86,7 @@ house_1 = House.create!(
   bedroom: 2,
   bathroom: 2,
   square_feet: 700,
-  description: "Cosy, homely, 10mins from the mrt",
+  description: "Nestled in a tranquil cul-de-sac, this cozy 2-bedroom, 2-bathroom home is a hidden gem. With a spacious backyard perfect for gardening enthusiasts and a sunlit living room, it's an ideal family haven.",
   property_type: "HDB",
   tenure: "99-year",
   region: "North East Community Development Council"
@@ -132,9 +132,9 @@ house_2 = House.create!(
   address: "Bishan Avenue 1",
   price: 702100,
   bedroom: 4,
-  bathroom: 1,
+  bathroom: 2,
   square_feet: 921,
-  description: "Cooling, lively, 31mins from the mrt",
+  description: "Experience urban living at its finest in this stylish 4-bedroom, 2-bathroom condo. Located in the heart of downtown, it offers easy access to restaurants, shops, and cultural attractions.",
   property_type: "Condo",
   tenure: "999-year",
   region: "Central Singapore Community Development Council"
@@ -183,7 +183,7 @@ house_3 = House.create!(
   bedroom: 3,
   bathroom: 3,
   square_feet: 850,
-  description: "South facing, high storey",
+  description: "This charming 2-story townhouse boasts 3 bedrooms, 3 bathrooms, and a delightful front porch. The open-concept living area is perfect for hosting gatherings, and the community park is a great place for kids to play.",
   property_type: "Condo",
   tenure: "99-year",
   region: "Central Singapore Community Development Council"
@@ -238,7 +238,7 @@ house_4 = House.create!(
   bedroom: 5,
   bathroom: 5,
   square_feet: 1500,
-  description: "Close to town, well-renovated",
+  description: "Embrace luxury living in this modern 5-bedroom, 5-bathroom estate. The gourmet kitchen, private swimming pool, and sweeping views of the nearby hills make it an entertainer's dream.",
   property_type: "Landed",
   tenure: "freehold",
   region: "Central Singapore Community Development Council"
@@ -279,7 +279,7 @@ house_5 = House.create!(
   bedroom: 4,
   bathroom: 3,
   square_feet: 1100,
-  description: "Near to tourist areas",
+  description: "Discover serenity in this 5-acre estate with a custom-built 4-bedroom, 3-bathroom home. Features include a gourmet kitchen, a barn for horses, and a private pond for fishing. It's a nature lover's paradise.",
   property_type: "Condo",
   tenure: "999-year",
   region: "Central Singapore Community Development Council"
@@ -319,7 +319,7 @@ house_6 = House.create!(
   bedroom: 2,
   bathroom: 2,
   square_feet: 700,
-  description: "Close to CBD, very airy!",
+  description: "Luxury living meets convenience in this 2-bedroom, 2-bathroom high-rise condo. Enjoy stunning city views from the private balcony and take advantage of the on-site fitness center and concierge services.",
   property_type: "HDB",
   tenure: "99-year",
   region: "Central Singapore Community Development Council"
@@ -359,7 +359,7 @@ house_7 = House.create!(
   bedroom: 2,
   bathroom: 2,
   square_feet: 920,
-  description: "Cooling, lively, 10mins from the mrt",
+  description: "Step back in time with this historic 2-bedroom, 2-bathroom Victorian home. Original hardwood floors, stained glass windows, and a wraparound porch exude timeless charm.",
   property_type: "HDB",
   tenure: "999-year",
   region: "North East Community Development Council"
@@ -399,7 +399,7 @@ house_8 = House.create!(
   bedroom: 2,
   bathroom: 1,
   square_feet: 600,
-  description: "Quiet, near to good schools",
+  description: "Experience waterfront living in this 2-bedroom, 1-bathroom beachfront cottage. Wake up to the sound of waves, soak in ocean views from the deck, and take long walks on the sandy shores.",
   property_type: "HDB",
   tenure: "99-year",
   region: "North East Community Development Council"
