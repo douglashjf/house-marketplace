@@ -2,26 +2,34 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
 }
+
 .house-info-section {
+  height: 120px;
   flex: 1; /* Each section takes equal width */
-  padding: 10px; /* Add padding for spacing within sections */
+  padding: 20px; /* Add padding for spacing within sections */
   border: 1px solid #ddd; /* Add a border for visual separation */
-  background-color: #f9f9f9; /* Add background color for contrast */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
+  background-color: white; /* Set the background color to white */
+  box-shadow: none; /* Remove the box shadow */
+
 }
 
 .house-info-section p {
   margin: 0; /* Reset default margin for paragraphs inside sections */
+  font-size: 18px; /* Increase text size */
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+  text-align: center; /* Center text horizontally */
 }
 
 .price {
-  font-size: 24px;
+  font-size: 40px;
   font-weight: bold;
 }
 
 .price-per-sqft {
-  font-size: 16px;
+  font-size: 30px;
   margin-top: 5px; /* Add some spacing between price and price-per-sqft */
 }

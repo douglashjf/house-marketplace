@@ -13,7 +13,6 @@
         <%= link_to 'Edit', edit_house_path(@house), class: "btn btn-info m-3" if policy(@house).edit? %>
         <%= link_to 'Delete', house_path(@house), class: "btn btn-danger m-3", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} if policy(@house).destroy? %>
       </div>
-      <hr>
 
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -33,17 +32,26 @@
         </button>
       </div>
 
-      <div>
-        <p>Region: <%= @house.region %></p>
-        <p>Minimum Ask Price: <%= number_to_currency(@house.price, precision: 0) %></p>
-        <p>Bedrooms: <%= @house.bedroom %></p>
-        <p>Bathrooms: <%= @house.bathroom %></p>
-        <p>Size in sqft: <%= @house.square_feet %> sqft</p>
-        <p>Price per sqft: <%= number_to_currency((@house.price.to_f / @house.square_feet).round(2)) %> psf</p>
-        <p>Description: <%= @house.description %></p>
-        <p>Type: <%= @house.property_type %></p>
-        <p>Tenure: <%= @house.tenure %></p>
-      </div>
+        <div class="house-info">
+          <div class="house-info-section flex-row m-3 p-1">
+            <p class="price"><%= number_to_currency(@house.price) %></p>
+            <p class="price-per-sqft"><%= number_to_currency((@house.price.to_f / @house.square_feet).round(2)) %> psf</p>
+          </div>
+          <div class="house-info-section flex-row m-3 p-1">
+            <p><%= @house.bedroom %> Bedrooms  <i class="fa-solid fa-bed"></i></p>
+            <p><%= @house.bathroom %> Bathrooms <i class="fa-solid fa-toilet"></i></p>
+            <p><%= @house.square_feet %> sqft <i class="fa-solid fa-ruler-combined"></i></p>
+          </div>
+        </div>
+
+        <div class="house-details">
+          <ul>
+            <li>Region: <%= @house.region %></li>
+            <li>Description: <%= @house.description %></li>
+            <li>Type: <%= @house.property_type %></li>
+            <li>Tenure: <%= @house.tenure %></li>
+          </ul>
+        </div>
 
       <%# Geocoding %>
       <div data-controller="map"
