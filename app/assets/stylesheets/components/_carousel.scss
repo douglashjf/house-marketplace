@@ -1,0 +1,14 @@
+.carousel-inner {
+  max-width: 600px; /* Adjust the desired width */
+  max-height: 400px; /* Adjust the desired height */
+  margin: 0 auto; /* Center the carousel within its container */
+  // display: flex;
+  // justify-content: center;
+  overflow: hidden; /* Ensure images don't overflow the container */
+}
+
+.carousel-inner-img {
+  width: 400px; /* Ensure the image resizes while maintaining its aspect ratio */
+  height: 300px; /* Ensure the image resizes while maintaining its aspect ratio */
+  object-fit: cover; /* Maintain aspect ratio and cover the entire frame */
+}
