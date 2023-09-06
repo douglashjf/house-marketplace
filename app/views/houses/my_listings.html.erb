@@ -27,9 +27,9 @@
             <div class="card-body d-flex flex-column">
               <h5 class="card-title"><%= house.address %></h5>
               <p class="card-text">Minimum Ask Price: <%= number_to_currency(house.price, precision: 0)%></p>
-              <p class="card-text">No. of Offers: <%= Offer.where(house_id: house.id, status: 'pending').length %></p>
-              <% if Offer.where(house_id: house.id, status: 'pending').present? %>
-                <p class="card-text">Highest Offer: <%= number_to_currency(Offer.where(house_id: house.id, status: 'pending').maximum(:price), precision: 0)%> </p>
+              <p class="card-text">No. of Offers: <%= Offer.where(house_id: house.id, status: 'Pending').length %></p>
+              <% if Offer.where(house_id: house.id, status: 'Pending').present? %>
+                <p class="card-text">Highest Offer: <%= number_to_currency(Offer.where(house_id: house.id, status: 'Pending').maximum(:price), precision: 0)%> </p>
               <% end %>
               <div class="mt-auto">
                 <%= link_to "Check this out!", house_path(house), class: "btn btn-primary" %>
