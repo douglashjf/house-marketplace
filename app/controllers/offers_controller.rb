@@ -57,16 +57,15 @@ class OffersController < ApplicationController
 
     if offer.save
       @offer = Offer.new
-      @house = offer.house
+      @house = offer.house.reload
       @markers = [
         {
           lat: @house.latitude,
           lng: @house.longitude
         }]
-      render "houses/show", :layout => false
-    else
-      puts offer.errors.full_messages
-    end
+      end
+
+      render "houses/show"
   end
 
   def decline
@@ -83,7 +82,8 @@ class OffersController < ApplicationController
           lat: @house.latitude,
           lng: @house.longitude
         }]
-      render "houses/show", :layout => false
+
+      render "houses/show"
     else
       puts offer.errors.full_messages
     end
