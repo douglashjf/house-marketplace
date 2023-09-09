@@ -18,12 +18,14 @@ export default class extends Controller {
     const formElement = this.acceptTarget.parentElement;
     fetch(formElement.action, {
       method: "POST",
-      headers: {},
+      headers: {
+        accept: "application/json"
+      },
       body: new FormData(formElement)
     })
-      .then(response => response.text())
+      .then(response => response.json())
       .then((data) => {
-        document.querySelector("#content").innerHTML = data;
+        document.querySelector("#current_offers").innerHTML = data.accept_offers;
       })
   }
 

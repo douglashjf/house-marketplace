@@ -63,7 +63,14 @@ class OffersController < ApplicationController
           lat: @house.latitude,
           lng: @house.longitude
         }]
-      render "houses/show", :layout => false
+
+      respond_to do |format|
+        format.json do
+          render json: {
+            accept_offers: render_to_string(partial: 'houses/current_offers', locals: { house: offer.house }, formats: [:html])
+          }
+        end
+      end
     else
       puts offer.errors.full_messages
     end

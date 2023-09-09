@@ -83,50 +83,7 @@
 
       <div class="sticky-top">
         <h2>Current Offers</h2>
-        <table class="table table-striped table-hover" >
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Price</th>
-              <th>Bidder</th>
-              <th>Status</th>
-              <th>Date Created</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @house.offers.order(price: :desc).each_with_index do |offer, index| %>
-              <tr data-controller="accept-offers">
-                <td><%= index + 1 %></td>
-                <td><%= number_to_currency(offer.price, precision: 0) %></td>
-                <td><%= offer.user.first_name  %></td>
-                <td data-accept-offers-target="status" ><%= offer.status  %></td>
-                <td><%= offer.created_at.strftime('%Y-%m-%d') %></td>
-                <% if offer.user == current_user && offer.status == 'Pending'  %>
-                  <td>
-                    <div class="d-flex flex-column">
-                    <button type="button" class="btn btn-secondary btn-sm w-100 mb-1" data-bs-toggle="modal" data-bs-target="#offer-<%= offer.id%>">
-                      Edit
-                    </button>
-                     <%= link_to 'Delete', offer_path(offer), class: "btn btn-warning btn-sm", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-                    </div>
-                  </td>
-                <% else %>
-                  <td></td>
-                <% end %>
-                <% if House.find(offer.house_id).user == current_user && offer.status == 'Pending'  %>
-                    <td>
-                      <div>
-                        <%= button_to 'Accept', accept_house_offer_path(offer.house, offer), method: :post, class: 'update-offer-button btn btn-success btn-sm w-100 mb-1', data: { accept_offers_target: "accept", action: "click->accept-offers#accept" } %>
-                        <%= button_to 'Decline', decline_house_offer_path(offer.house, offer), method: :post, class: 'decline-offer-button btn btn-danger btn-sm w-100', data: { accept_offers_target: "decline", action: "click->accept-offers#decline" } %>
-                    </div>
-                   </td>
-                <% else %>
-                  <td></td>
-                <% end %>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+        <div id="current_offers"><%= render "current_offers", house: @house %></div>
         <% house_has_offer_by_current_user = @house.offers.any? { |offer| offer.user == current_user } %>
         <%#= current_user.id %>
         <%#= @house.offers.map {|offer| offer.user.id}.join(',') %>
